@@ -1,56 +1,64 @@
-import React from 'react'
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
-import ExpandableCardDemo from './components/expandable-card-demo-grid';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FaArrowAltCircleUp } from 'react-icons/fa';
 
+import Loader from './components/ui/Loader';
+import CustomCursor from './components/ui/CustomCursor';
+import { BackgroundBeamsWithCollision } from './components/ui/BgBeamsWithCollision';
+import KinesisHeroSection from './components/ui/Home';
+import { HeroParallax } from './components/ui/About';
+import CarouselDemo from './components/ui/Events';
+import Footer from './components/ui/footer';
+import { AnimatedTestimonials } from "./components/ui/Animated_Testimonials";
+import { HoverEffect } from './components/ui/OurDomains';
+
+import { products } from './data/products';
+import testimonials from './data/testimonials';
+import domains from './data/domains';
+import './App.css';
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
 
-  const testimonials = [
-    {
-      quote:
-        "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-      name: "Sarah Chen",
-      designation: "Product Manager at TechFlow",
-      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
-      designation: "Engineering Lead at DataPro",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-      name: "Lisa Thompson",
-      designation: "VP of Technology at FutureNet",
-      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
-  return( 
-  <div>
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollBtnAnimation = {
+    initial: { y: 0 },
+    animate: { y: [0, -10, 0] },
+    transition: { duration: 1.5, repeat: Infinity },
+    whileHover: { scale: 1.2 }
+  };
+
+  if (loading) return <Loader />;
+
+  return (
+    <div className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full' id='home'>
+      <motion.div
+        {...scrollBtnAnimation}
+        className='fixed bottom-8 right-8 z-[9999] cursor-pointer'
+        onClick={scrollToTop}
+      >
+        <FaArrowAltCircleUp className='text-[#171040] bg-white rounded-full text-6xl' />
+      </motion.div>
+
+      <CustomCursor />
+      <BackgroundBeamsWithCollision className='w-full'>
+        <KinesisHeroSection />
+      </BackgroundBeamsWithCollision>
+      <HeroParallax products={products} />
+      <CarouselDemo />
+      <HoverEffect cards={domains} />
       <AnimatedTestimonials testimonials={testimonials} />
-      <ExpandableCardDemo/>
-  </div>
+      <Footer />
+    </div>
+  );
+};
 
-  )
-  
-  ;
-}
-
-export default App
+export default App;
