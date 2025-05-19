@@ -8,7 +8,7 @@ import { BackgroundBeamsWithCollision } from './components/ui/BgBeamsWithCollisi
 import KinesisHeroSection from './components/ui/Home';
 import { HeroParallax } from './components/ui/About';
 import CarouselDemo from './components/ui/Events';
-import Footer from './components/ui/footer';
+import Footer from './components/ui/Footer';
 import { AnimatedTestimonials } from "./components/ui/Animated_Testimonials";
 import { HoverEffect } from './components/ui/OurDomains';
 
