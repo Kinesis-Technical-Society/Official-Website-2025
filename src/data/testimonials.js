@@ -1,34 +1,14 @@
 const testimonials = [
     {
-        quote:
-            "Leading the tech team has been a rewarding journey. This platform has empowered us to innovate rapidly and maintain code quality at scale.",
-        name: "Yash Aggarwal",
-        designation: "Tech Lead",
-        src: "/yashAggarwal.jpg",
-        linkedIn: "https://www.linkedin.com/in/yash-kumar-aggarwal-519658265/",
-        github: "https://github.com/yash-070702",
+        quote: "Leading with vision and purpose, I strive to empower our team and ensure every initiative aligns with our mission.",
+        name: "Vishuddhanand Manjhi",
+        designation: "President",
+        src: "/vishu.jpg",
+        linkedIn: "https://www.linkedin.com/in/vishuddhanand-manjhi-274971259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        github: "http://gitHub.com/vishumanjhi",
     },
     {
-        quote:
-            "Designing responsive and dynamic web experiences is our top priority, and this toolset gave us everything we needed to deliver efficiently.",
-        name: "Sneha Veerbhan",
-        designation: "Web Lead",
-        src: "snehaVeerbhan.jpg",
-        linkedIn: "https://www.linkedin.com/in/sneha-veerbhan-s2702/",
-        github: "https://github.com/SnehaVeerbhan",
-    },
-    {
-        quote:
-            "Machine learning integration has never been this smooth. The pipeline and tools significantly streamlined our experimentation process.",
-        name: "Sephali Srivastava",
-        designation: "ML Lead",
-        src: "sephaliSrivastava.jpg",
-        linkedIn: "https://www.linkedin.com/in/srisheph/",
-        github: "https://github.com/srisheph",
-    },
-    {
-        quote:
-            "Leading with purpose means enabling every team to perform at their best. This platform made collaboration and delivery seamless.",
+        quote: "As General Secretary, I focus on seamless coordination and fostering a community built on collaboration and excellence.",
         name: "Stuti Agrawal",
         designation: "General Secretary",
         src: "/stuti.jpg",
@@ -36,32 +16,76 @@ const testimonials = [
         github: "https://github.com/Stutiag18",
     },
     {
-        quote:
-            "User experience is everything — this project allowed me to craft intuitive and elegant interfaces that truly resonate with users.",
-        name: "Avanish Prasad",
-        designation: "UI/UX Lead",
-        src: "/avanish.jpg",
-        linkedIn:
-            "https://www.linkedin.com/in/avanish-prasad-231496257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        behance: "https://www.behance.net/avanishprasad",
-    },
-    {
-        quote:
-            "Visual identity is key. With this system, we created impactful and consistent designs that truly reflected our brand values.",
-        name: "Shivendra Keshari",
-        designation: "Graphics Lead",
-        src: "/shivendra.webp",
-        linkedIn: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
-        github: "https://github.com/Shivendra-11",
-    },
-    {
-        quote:
-            "Guiding mentees was effortless with this system. The clarity and structure helped us support every learner’s growth effectively.",
+        quote: "As Mentor Lead, I guide budding talents by nurturing learning, curiosity, and a growth mindset within our tech circle.",
         name: "Lakshay Jain",
         designation: "Mentor Lead",
         src: "/lakshay.jpg",
         linkedIn: "https://www.linkedin.com/in/lakshay-jain001/",
         github: "https://github.com/LakshayJain458",
+    },
+    {
+        quote: "As Project Lead, I manage and streamline project development, ensuring timely delivery and impactful outcomes.",
+        name: "Gurbani Kaur",
+        designation: "Project Lead",
+        src: "/gurbani.jpg",
+        linkedIn: "https://www.linkedin.com/in/gurbanikaur204/",
+        github: "https://github.com/Kaur204",
+    },
+    {
+        quote: "As Technical Head of KTS, I lead tech development and innovation, guiding the team to build impactful web applications and manage digital infrastructure.",
+        name: "Yash Aggarwal",
+        designation: "Technical Lead",
+        src: "/yashAggarwal.jpg",
+        linkedIn: "https://www.linkedin.com/in/yash-kumar-aggarwal-519658265/",
+        github: "https://github.com/yash-070702",
+    },
+    {
+        quote: "As Event Lead, I bring our ideas to life through impactful events that engage, inspire, and build community.",
+        name: "Harsh Kumar Bharti",
+        designation: "Event Lead",
+        src: "/harsh.jpg",
+        linkedIn: "https://www.linkedin.com/in/harsh-kumar-bharti-66aa60299",
+        github: "https://github.com/harsh9457",
+    },
+    {
+        quote: "As PR Lead, I focus on building strong external connections and ensuring our vision reaches a wider audience.",
+        name: "Ishita Tyagi",
+        designation: "PR Lead",
+        src: "/ishita.jpg",
+        linkedIn: "https://in.linkedin.com/in/ishita17tyagi",
+        github: "https://github.com/ishita17tyagi",
+    },
+    {
+        quote: "As WebD Lead, I focus on clean, efficient, and scalable web solutions that enhance user experience and performance.",
+        name: "Sneha Veerbhan",
+        designation: "WebD Lead",
+        src: "snehaVeerbhan.jpg",
+        linkedIn: "https://www.linkedin.com/in/sneha-veerbhan-s2702/",
+        github: "https://github.com/SnehaVeerbhan",
+    },
+    {
+        quote: "As UI/UX Lead, I craft intuitive and visually appealing designs that ensure seamless user interaction and satisfaction.",
+        name: "Avanish Prasad",
+        designation: "UI/UX Lead",
+        src: "/avanish.jpg",
+        linkedIn: "https://www.linkedin.com/in/avanish-prasad-231496257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        behance: "https://www.behance.net/avanishprasad",
+    },
+    {
+        quote: "As ML Lead, I explore intelligent systems and build smart solutions that push the boundaries of innovation.",
+        name: "Sephali Srivastava",
+        designation: "ML Lead",
+        src: "sephaliSrivastava.jpg",
+        linkedIn: "https://www.linkedin.com/in/srisheph/",
+        github: "https://github.com/srisheph",
+    },
+    {
+        quote: "As Graphics Lead, I translate ideas into visuals that communicate, captivate, and connect with our audience.",
+        name: "Shivendra Keshari",
+        designation: "Graphics Lead",
+        src: "/shivendra.webp",
+        linkedIn: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
+        github: "https://github.com/Shivendra-11",
     },
 ];
 

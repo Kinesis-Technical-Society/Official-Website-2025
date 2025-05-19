@@ -21,7 +21,7 @@ export const HoverEffect = ({ cards }) => {
     useOutsideClick(ref, () => setActive(null));
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-[#ffffff] via-[#4a4b8a] to-[#0b0434] py-10">
+        <section id="domains" className="min-h-screen bg-gradient-to-b from-[#ffffff] via-[#4a4b8a] to-[#0b0434] py-10">
             <AnimatePresence>
                 {active && typeof active === "object" && (
                     <motion.div
@@ -142,7 +142,7 @@ export const HoverEffect = ({ cards }) => {
                 ))}
             </ul>
 
-        </div>
+        </section>
     );
 };
 

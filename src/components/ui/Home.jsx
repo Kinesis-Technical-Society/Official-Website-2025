@@ -14,7 +14,7 @@ import GridDistortionPure from "../../ReactBits/GridDistortion";
 import bg from "/image.webp";
 import { Modal, ModalTrigger } from "@/AccertinityUI/animated-modal";
 
-const ThreeDCardDemo = lazy(() => import("../../AccertinityUI/HeroRight")); 
+const ThreeDCardDemo = lazy(() => import("../../AccertinityUI/HeroRight"));
 
 const KinesisHeroSection = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ const KinesisHeroSection = () => {
         () => [
             { name: "Home", link: "#home" },
             { name: "About", link: "#about" },
-            { name: "Projects", link: "#" },
+            { name: "Projects", link: "#domains" },
             { name: "Events", link: "#events" },
             { name: "Blogs", link: "#" },
             { name: "Contact Us", link: "#contact" },
@@ -97,13 +97,13 @@ const KinesisHeroSection = () => {
                                 <Modal>
                                     <a href="#about">
                                         <ModalTrigger className="relative cursor-pointer flex justify-center items-center group/modal-btn text-white dark:text-black dark:bg-white bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 overflow-hidden rounded-3xl px-6 py-2">
-                                        <span className="transition-transform duration-500 group-hover/modal-btn:translate-x-40">
-                                            Explore
-                                        </span>
-                                        <div className="absolute inset-0 z-20 flex items-center justify-center -translate-x-40 transition-transform duration-500 group-hover/modal-btn:translate-x-0">
-                                            👇🏻
-                                        </div>
-                                    </ModalTrigger>
+                                            <span className="transition-transform duration-500 group-hover/modal-btn:translate-x-40">
+                                                Explore
+                                            </span>
+                                            <div className="absolute inset-0 z-20 flex items-center justify-center -translate-x-40 transition-transform duration-500 group-hover/modal-btn:translate-x-0">
+                                                👇🏻
+                                            </div>
+                                        </ModalTrigger>
                                     </a>
                                 </Modal>
                             </div>

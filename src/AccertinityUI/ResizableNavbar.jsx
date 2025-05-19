@@ -210,7 +210,7 @@ export const NavbarKtsLogo = () => {
             href="#"
             className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black gap-2">
             <img
-                src="/ktsLogo.webp"
+                src="/ktsLogo1.png"
                 alt="logo"
                 loading="lazy"
                 width={80}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaGithub, FaLinkedin, FaPhone, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import kietLogo from "/kietLogo.webp";
-import ktsLogo from "/ktsLogo.webp";
+import ktsLogo from "/ktsLogo1.png";
 import people from "../../data/people";
 
 const SimpleTooltip = ({ items }) => {
@@ -47,7 +47,7 @@ const Footer = () => {
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center space-x-4 mb-6 md:mb-0">
-            <img src={ktsLogo} alt="KTS Logo" className="h-12 w-17" />
+            <a href="#"><img src={ktsLogo} alt="KTS Logo" className="h-12 w-17" /></a>
             <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} alt="KIET Logo" className="h-14 w-17" /></a>
           </div>
 
@@ -106,7 +106,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {["WEB Dev", "Android Dev", "Machine Learning", "UI/UX"].map((item) => (
                 <li key={item}>
-                  <a href="https://www.linkedin.com/company/kinesis-technical-society/" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
+                  <a href="#domains" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
                     {item}
                   </a>
                 </li>
@@ -141,6 +141,15 @@ const Footer = () => {
               </li>
               <li>
                 <a
+                  href="mailto:itss@kiet.edu"
+                  className="flex items-center text-gray-300 hover:text-white transition-colors duration-200"
+                >
+                  <MdEmail className="h-4 w-4 mr-3 text-purple-500" />
+                  <span className="text-sm">kts@kiet.edu</span>
+                </a>
+              </li>
+              <li>
+                <a
                   href="mailto:hodcsoffice@kiet.edu"
                   className="flex items-center text-gray-300 hover:text-white transition-colors duration-200"
                 >
@@ -161,7 +170,7 @@ const Footer = () => {
 
           <div className="flex space-x-6 mt-4 md:mt-0">
             {["Privacy Policy", "Terms of Service", "Cookies"].map((text) => (
-              <a key={text} href="https://www.linkedin.com/company/kinesis-technical-society/" className="text-xs text-gray-400 hover:text-white transition-colors duration-200">
+              <a key={text} href="#" className="text-xs text-gray-400 hover:text-white transition-colors duration-200">
                 {text}
               </a>
             ))}

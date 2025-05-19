@@ -8,7 +8,7 @@ import { FaSquareBehance } from "react-icons/fa6";
 
 export const AnimatedTestimonials = ({
     testimonials,
-    autoplay = true,
+    autoplay = false,
 }) => {
     const [active, setActive] = useState(0);
 
@@ -84,7 +84,7 @@ export const AnimatedTestimonials = ({
                                         scale: isActive(index) ? 1 : 0.95,
                                         z: isActive(index) ? 0 : -100,
                                         rotate: isActive(index) ? 0 : randomRotateY(),
-                                        zIndex: isActive(index) ? 10 : testimonials.length + 2 - index,
+                                        zIndex: isActive(index) ? 20 : testimonials.length + 2 - index,
                                         y: isActive(index) ? [0, -80, 0] : 0,
                                     }}
                                     exit={{
