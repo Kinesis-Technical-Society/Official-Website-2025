@@ -128,7 +128,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             className={`!relative !p-[4vmin] transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
           >
-            <h2 className="text-[14px] sm:text-lg md:text-2xl lg:text-4xl !mt-7 font-semibold !relative break-words">
+            <h2 className="text-[30px] sm:text-2xl md:text-2xl lg:text-4xl !mt-7 font-semibold !relative break-words">
               {title}
             </h2>
             <div className="flex justify-center">
@@ -188,7 +188,7 @@ export function Carousel({ slides }) {
   }, []);
 
   return (
-    <div className="relative w-full bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white text-white overflow-hidden flex flex-col items-center px-6 py-20">
+    <div className="relative w-full bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white text-white overflow-hidden flex flex-col items-center px-6 pt-38">
 
       {!isHoveringCarousel && (
         <motion.div
@@ -246,7 +246,7 @@ export function Carousel({ slides }) {
         >
           {slides.map((slide, index) => (
             <Slide
-              key={index}
+              key={slide.id}
               slide={slide}
               index={index}
               current={current}

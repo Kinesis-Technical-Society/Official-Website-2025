@@ -16,6 +16,7 @@ import { products } from './data/products';
 import testimonials from './data/testimonials';
 import domains from './data/domains';
 import './App.css';
+import Contact from './components/ui/Contact';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -57,6 +58,7 @@ const App = () => {
       <HoverEffect cards={domains} />
       <AnimatedTestimonials testimonials={testimonials} />
       <Footer />
+      <Contact />
     </div>
   );
 };

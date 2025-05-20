@@ -86,7 +86,7 @@ export const NavItems = ({
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-0 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-0",
+                "inset-0 hidden flex-1 flex-row items-center justify-center space-x-0 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-0",
                 className
             )}>
             {items.map((item, idx) => (
@@ -195,7 +195,7 @@ export const NavbarKietLogo = () => {
             target="_blank"
             className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black gap-2">
             <img
-                src="/kietLogo.webp"
+                src="/kietLogo.png"
                 alt="logo"
                 loading="lazy"
                 width={60}

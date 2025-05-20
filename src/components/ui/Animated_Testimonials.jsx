@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import CardDemo from "./card-demo";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaSquareBehance } from "react-icons/fa6";
+import { FocusCards } from "@/AccertinityUI/focus-cards";
+import cards from "../../data/founder";
 
 export const AnimatedTestimonials = ({
     testimonials,
@@ -32,7 +34,7 @@ export const AnimatedTestimonials = ({
     const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
 
     return (
-        <div className="mx-auto px-4 py-20 font-sans antialiased md:px-8 lg:px-12 bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white">
+        <section id="team" className="mx-auto px-4 font-sans antialiased md:px-8 lg:px-12 bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white pt-32">
             <div className="w-9/12 mx-auto text-center">
                 <motion.div
                     className="text-center mb-12 z-10"
@@ -43,14 +45,14 @@ export const AnimatedTestimonials = ({
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center font-orbitron">
                         <span className="text-white">Our </span>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
-                            Team
+                            Mentors
                         </span>
                     </h2>
                 </motion.div>
             </div>
 
             {/* Top Cards */}
-            <div className="flex justify-center flex-col items-center md:flex-row mt-10 gap-10">
+            <div className="flex justify-center flex-col items-center sm:flex-row mt-10 gap-8">
                 <CardDemo
                     backgroundImage="/hodSir.jpg"
                     title="Dr. Ajay Kr. Shrivastava"
@@ -64,6 +66,22 @@ export const AnimatedTestimonials = ({
                     linkedin="https://www.linkedin.com/in/shivani-kakria-363531217/"
                 />
             </div>
+
+            <div className="w-9/12 mx-auto text-center pt-15">
+                <motion.div
+                    className="text-center z-10"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center font-orbitron">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
+                            Founders
+                        </span>
+                    </h2>
+                </motion.div>
+            </div>
+            <FocusCards cards={cards} />;
 
             {/* Animated Testimonials */}
             <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2 w-9/12 mx-auto py-20">
@@ -186,6 +204,6 @@ export const AnimatedTestimonials = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };

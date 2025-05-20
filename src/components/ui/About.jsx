@@ -24,21 +24,18 @@ export const HeroParallax = ({ products }) => {
         <div
             id="about"
             ref={ref}
-            className="h-auto py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-gradient-to-b from-[#dfdbdc] via-[#4a4b8a] to-[#0b0434]"
+            className="min-h-screen pt-32 pb-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-gradient-to-b from-[#dfdbdc] via-[#4a4b8a] to-[#0b0434]"
         >
             <Header />
-            <motion.div
-                style={{ rotateX, rotateZ, translateY, opacity }}
-                className=""
-            >
-                <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-15">
+            <motion.div style={{ rotateX, rotateZ, translateY, opacity }}>
+                <motion.div className="flex justify-center space-x-4 mb-10">
                     {firstRow.map((product) => (
-                        <ProductCard key={product.title} product={product} translate={translateX} />
+                        <ProductCard key={product.id} product={product} translate={translateX} />
                     ))}
                 </motion.div>
-                <motion.div className="flex flex-row space-x-10 mb-15">
+                <motion.div className="flex justify-center space-x-4 mt-10">
                     {secondRow.map((product) => (
-                        <ProductCard key={product.title} product={product} translate={translateXReverse} />
+                        <ProductCard key={product.id} product={product} translate={translateXReverse} />
                     ))}
                 </motion.div>
             </motion.div>
@@ -70,7 +67,7 @@ const Header = React.memo(() => (
                 Society
             </motion.span>
         </motion.h2>
-        <p className="text-base md:text-xl mt-8 text-black">
+        <p className="text-base md:text-xl mt-8 text-gray-800">
             <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of our college, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
             <br />
             <br />
@@ -86,10 +83,10 @@ const Header = React.memo(() => (
             <br />
             <strong>•	Competitive Programming</strong>
             <br />
-            <p className="text-base md:text-xl mt-8 text-black">
+            <p className="text-base md:text-xl mt-8 text-gray-300">
                 Our society organizes a wide range of activities including technical workshops, hackathons, coding competitions, and project showcases that encourage hands-on learning and creative problem-solving.
             </p>
-            <p className="text-base md:text-xl mt-8 text-black">KTS is more than just a club — it's a community of driven individuals who are passionate about technology, eager to innovate, and always ready to learn.</p>
+            <p className="text-base md:text-xl mt-8 text-gray-200">KTS is more than just a club — it's a community of driven individuals who are passionate about technology, eager to innovate, and always ready to learn.</p>
         </p>
     </div>
 ));
@@ -98,19 +95,18 @@ const ProductCard = React.memo(({ product, translate }) => (
     <motion.div
         style={{ x: translate }}
         whileHover={{ y: -20 }}
-        className="group/product relative shrink-0 h-[12.5rem] md:h-[15rem] lg:h-70 w-[15rem] md:w-[20rem] lg:w-[25rem]"
+        className="group/product relative shrink-0 h-[12.5rem] md:h-[15rem] lg:h-72 w-[15rem] md:w-[20rem] lg:w-[25rem] mb-6"
     >
         <img
             loading="lazy"
             src={product.thumbnail}
             alt={product.title}
-            className="object-cover object-left-top absolute h-full w-full inset-0 aspect-[4/3]"
-            height="600"
-            width="600"
+            className="object-cover object-center absolute h-full w-full inset-0"
         />
         <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none" />
-        <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+        <h2 className="absolute top-4 left-4 opacity-0 group-hover/product:opacity-100 text-white text-sm md:text-lg">
             {product.title}
         </h2>
     </motion.div>
 ));
+

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedin, FaPhone, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import kietLogo from "/kietLogo.webp";
+import kietLogo from "/kietLogo.png";
 import ktsLogo from "/ktsLogo1.png";
 import people from "../../data/people";
+import Contact from "./Contact";
+import { Modal } from "@/AccertinityUI/animated-modal";
 
 const SimpleTooltip = ({ items }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -11,36 +13,48 @@ const SimpleTooltip = ({ items }) => {
   return (
     <div className="flex flex-wrap -space-x-2">
       {items.map((item, idx) => (
-        <div
-          key={item.id}
-          className="relative"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          <div className="relative h-8 w-8 rounded-full border-2 border-gray-200 transition duration-300 hover:scale-110 hover:z-10">
-            <img
-              src={item.image || "/placeholder.svg"}
-              alt={item.name}
-              className="rounded-full object-cover h-full w-full"
-            />
-          </div>
-
-          {hoveredIndex === idx && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-10 min-w-max">
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white text-xs rounded-md py-1 px-2 shadow-lg">
-                <p className="font-medium">{item.name}</p>
-                <p className="text-gray-300 text-xs">{item.designation}</p>
-              </div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800" />
+        <a href={item.linkedin} target="_blank" rel="noopener noreferrer" key={item.id}>
+          <div
+            className="relative"
+            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <div className="relative h-8 w-8 rounded-full border-2 border-gray-200 transition duration-300 hover:scale-110 hover:z-10">
+              <img
+                src={item.image || "/placeholder.svg"}
+                alt={item.name}
+                className="rounded-full object-cover h-full w-full"
+              />
             </div>
-          )}
-        </div>
+
+            {hoveredIndex === idx && (
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-10 min-w-max">
+                <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white text-xs rounded-md py-1 px-2 shadow-lg">
+                  <p className="font-medium">{item.name}</p>
+                  <p className="text-gray-300 text-xs">{item.designation}</p>
+                </div>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800" />
+              </div>
+            )}
+          </div>
+        </a>
       ))}
     </div>
   );
 };
 
 const Footer = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = (name, link, e) => {
+    if (name === "Message") {
+      e.preventDefault();
+      setIsOpen(true);
+    } else {
+      window.location.href = link;
+    }
+  };
+
   return (
     <footer id="contact" className="bg-gradient-to-b from-slate-950 to-indigo-950 text-white py-16 px-5 border-t border-gray-800">
       <div className="max-w-6xl mx-auto">
@@ -48,7 +62,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center space-x-4 mb-6 md:mb-0">
             <a href="#"><img src={ktsLogo} alt="KTS Logo" className="h-12 w-17" /></a>
-            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} alt="KIET Logo" className="h-14 w-17" /></a>
+            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} alt="KIET Logo" className="h-14 w-15" /></a>
           </div>
 
           <div className="flex space-x-4">
@@ -87,15 +101,24 @@ const Footer = () => {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400" />
             </h3>
             <ul className="space-y-3">
-              {["Message", "Team", "Functioning"].map((item) => (
-                <li key={item}>
-                  <a href="https://www.linkedin.com/company/kinesis-technical-society/" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
-                    {item}
+              {[
+                { name: "Message", link: null },
+                { name: "Team", link: "#team" },
+                { name: "Functioning", link: "#domains" }
+              ].map(({ name, link }) => (
+                <li key={name}>
+                  <a
+                    href={link}
+                    onClick={(e) => handleLinkClick(name, link, e)}
+                    className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block cursor-pointer"
+                  >
+                    {name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
+
 
           {/* Projects */}
           <div>
@@ -136,15 +159,6 @@ const Footer = () => {
                   className="flex items-center text-gray-300 hover:text-white transition-colors duration-200"
                 >
                   <MdEmail className="h-4 w-4 mr-3 text-purple-500" />
-                  <span className="text-sm">itss@kiet.edu</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:itss@kiet.edu"
-                  className="flex items-center text-gray-300 hover:text-white transition-colors duration-200"
-                >
-                  <MdEmail className="h-4 w-4 mr-3 text-purple-500" />
                   <span className="text-sm">kts@kiet.edu</span>
                 </a>
               </li>
@@ -155,6 +169,15 @@ const Footer = () => {
                 >
                   <MdEmail className="h-4 w-4 mr-3 text-purple-500" />
                   <span className="text-sm">hodcsoffice@kiet.edu</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:itss@kiet.edu"
+                  className="flex items-center text-gray-300 hover:text-white transition-colors duration-200"
+                >
+                  <MdEmail className="h-4 w-4 mr-3 text-purple-500" />
+                  <span className="text-sm">itss@kiet.edu</span>
                 </a>
               </li>
             </ul>
@@ -177,6 +200,14 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+
+
+      {isOpen && (
+        <Modal>
+          <Contact isOpen={isOpen} setIsOpen={setIsOpen} />
+        </Modal>
+      )}
     </footer>
   );
 };
