@@ -12,7 +12,6 @@
       display: none;
     }
 
-    /* Pre-React loader */
     #initial-loader {
       display: flex;
       justify-content: center;
@@ -21,29 +20,30 @@
       background: #ffffff;
     }
 
-    .dot {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 12px;
-      height: 12px;
-      background: #000;
-      margin: 0 4px;
+    .loader {
+      width: 20px;
+      aspect-ratio: 1;
       border-radius: 50%;
-      animation: bounce 0.6s infinite alternate;
+      background: radial-gradient(at 30% 30%, #0000, #000a) #332e53;
+      position: relative;
+      left: 0;
+      top: 0;
+      animation:
+        l7-1 0.6s,
+        l7-2 0.3s;
+      animation-timing-function: cubic-bezier(.5, -200, .5, 200);
+      animation-iteration-count: infinite;
     }
 
-    .dot:nth-child(2) {
-      animation-delay: 0.1s;
+    @keyframes l7-1 {
+      100% {
+        left: 1px;
+      }
     }
 
-    .dot:nth-child(3) {
-      animation-delay: 0.2s;
-    }
-
-    @keyframes bounce {
-      to {
-        transform: translateY(-10px);
+    @keyframes l7-2 {
+      100% {
+        top: 0.3px;
       }
     }
   </style>
@@ -51,9 +51,7 @@
 
 <body>
   <div id="initial-loader">
-    <div class="dot">.</div>
-    <div class="dot">.</div>
-    <div class="dot">.</div>
+    <div class="loader"></div>
   </div>
 
   <div id="root"></div>

@@ -11,11 +11,11 @@ export const slideData = [
       <br/> 
       <p><strong>💡 What Participants Learned:</strong>
         <ul>
-          <li>• Python Programming Fundamentals</li>
-          <li>• Text Preprocessing and Tokenization</li>
-          <li>• NLP Libraries: NLTK and Scikit-learn</li>
-          <li>• Model Building: Fake News Detection</li>
-          <li>• Real-world Impact: Media Integrity through AI</li>
+          <li>Python Programming Fundamentals</li>
+          <li>Text Preprocessing and Tokenization</li>
+          <li>NLP Libraries: NLTK and Scikit-learn</li>
+          <li>Model Building: Fake News Detection</li>
+          <li>Real-world Impact: Media Integrity through AI</li>
         </ul>
       </p>
       <br/>

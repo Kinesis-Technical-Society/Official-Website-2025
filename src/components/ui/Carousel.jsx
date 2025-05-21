@@ -128,7 +128,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             className={`!relative !p-[4vmin] transition-opacity duration-1000 ease-in-out ${current === index ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
           >
-            <h2 className="text-[30px] sm:text-2xl md:text-2xl lg:text-4xl !mt-7 font-semibold !relative break-words">
+            <h2 className="text-[16px] sm:text-2xl md:text-2xl lg:text-4xl !mt-7 font-semibold !relative break-words">
               {title}
             </h2>
             <div className="flex justify-center">

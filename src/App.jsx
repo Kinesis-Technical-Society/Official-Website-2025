@@ -1,6 +1,8 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowAltCircleUp } from 'react-icons/fa';
+import { Routes, Route } from 'react-router-dom'; // ✅ Only import Routes & Route
 
 import Loader from './components/ui/Loader';
 import CustomCursor from './components/ui/CustomCursor';
@@ -9,14 +11,16 @@ import KinesisHeroSection from './components/ui/Home';
 import { HeroParallax } from './components/ui/About';
 import CarouselDemo from './components/ui/Events';
 import Footer from './components/ui/Footer';
-import { AnimatedTestimonials } from "./components/ui/Animated_Testimonials";
+import { AnimatedTestimonials } from './components/ui/Animated_Testimonials';
 import { HoverEffect } from './components/ui/OurDomains';
+import NabBar from './components/ui/NavBar';
+import { AppleCardsCarouselDemo } from './components/ui/AppleCardsCarouselDemo';
 
 import { products } from './data/products';
 import testimonials from './data/testimonials';
 import domains from './data/domains';
+
 import './App.css';
-import Contact from './components/ui/Contact';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +41,20 @@ const App = () => {
     whileHover: { scale: 1.2 }
   };
 
+  const HomePage = () => (
+    <>
+      <BackgroundBeamsWithCollision className='w-full'>
+        <KinesisHeroSection />
+      </BackgroundBeamsWithCollision>
+      <HeroParallax products={products} />
+      <CarouselDemo />
+      <HoverEffect cards={domains} />
+      <AnimatedTestimonials testimonials={testimonials} />
+    </>
+  );
+
+  const BlogPage = () => <AppleCardsCarouselDemo />;
+
   if (loading) return <Loader />;
 
   return (
@@ -50,15 +68,14 @@ const App = () => {
       </motion.div>
 
       <CustomCursor />
-      <BackgroundBeamsWithCollision className='w-full'>
-        <KinesisHeroSection />
-      </BackgroundBeamsWithCollision>
-      <HeroParallax products={products} />
-      <CarouselDemo />
-      <HoverEffect cards={domains} />
-      <AnimatedTestimonials testimonials={testimonials} />
+      <NabBar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blogs" element={<BlogPage />} />
+      </Routes>
+
       <Footer />
-      <Contact />
     </div>
   );
 };

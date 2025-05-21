@@ -103,8 +103,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: "Message", link: null },
-                { name: "Team", link: "#team" },
-                { name: "Functioning", link: "#domains" }
+                { name: "Team", link: "/#team" },
+                { name: "Functioning", link: "/#domains" }
               ].map(({ name, link }) => (
                 <li key={name}>
                   <a
@@ -129,7 +129,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {["WEB Dev", "Android Dev", "Machine Learning", "UI/UX"].map((item) => (
                 <li key={item}>
-                  <a href="#domains" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
+                  <a href="/#domains" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
                     {item}
                   </a>
                 </li>

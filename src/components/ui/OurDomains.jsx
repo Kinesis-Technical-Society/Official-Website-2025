@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { useOutsideClick } from "@/custom_hooks/use-outside-click";
-
 export const HoverEffect = ({ cards }) => {
     let [hoveredIndex, setHoveredIndex] = useState(null);
     const [active, setActive] = useState(null);
@@ -35,14 +34,14 @@ export const HoverEffect = ({ cards }) => {
 
             <AnimatePresence>
                 {active && typeof active === "object" && (
-                    <div className="fixed inset-0 grid place-items-center z-[100]">
+                    <div className="fixed inset-0 grid place-items-center z-[100] px-4">
                         <motion.button
                             key={`button-${active.title}-${id}`}
                             layout
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                            className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-[#171040] text-xl rounded-full h-6 w-6"
+                            className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-[#171040] text-xl rounded-full h-8 w-8"
                             onClick={() => setActive(null)}
                         >
                             <CloseIcon />
@@ -55,7 +54,7 @@ export const HoverEffect = ({ cards }) => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.8 }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-xl overflow-hidden p-6"
+                            className=" max-w-[500px] flex flex-col bg-white dark:bg-neutral-900 rounded-xl overflow-hidden p-6"
                         >
                             <motion.div layoutId={`image-${active.title}-${id}`}>
                                 <img
@@ -65,16 +64,16 @@ export const HoverEffect = ({ cards }) => {
                                 />
                             </motion.div>
 
-                            <div className="p-4">
+                            <div className="p-4 bg-[#2a115c] dark:bg-[#2a115c] rounded-b-xl">
                                 <motion.h3
                                     layoutId={`title-${active.title}-${id}`}
-                                    className="font-black text-neutral-700 dark:text-neutral-200 text-2xl mb-2 text-center"
+                                    className="font-bold bg-gradient-to-r from-pink-300 to-purple-400 bg-clip-text text-transparent dark:text-white text-2xl mb-2 text-center"
                                 >
                                     {active.title}
                                 </motion.h3>
                                 <motion.p
                                     layoutId={`description-${active.description}-${id}`}
-                                    className="text-neutral-900 dark:text-neutral-400 text-base mb-2"
+                                    className="text-white dark:text-white text-base mb-2"
                                 >
                                     {active.description}
                                 </motion.p>
@@ -84,7 +83,7 @@ export const HoverEffect = ({ cards }) => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
+                                    className="text-white text-xs md:text-sm lg:text-base flex [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]"
                                 >
                                     {typeof active.content === "function" ? active.content() : active.content}
                                 </motion.div>
@@ -197,7 +196,7 @@ function TiltCard({ card }) {
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="group p-4 flex flex-col bg-[#171040] dark:hover:bg-neutral-800 rounded-xl transition-all duration-300 ease-in-out"
+            className="group p-4 flex flex-col bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white dark:hover:bg-neutral-800 rounded-xl transition-all duration-300 ease-in-out"
             style={{ rotateX, rotateY }}
         >
             <div className="flex gap-4 flex-col w-full">
@@ -209,10 +208,10 @@ function TiltCard({ card }) {
                     />
                 </motion.div>
                 <div className="flex justify-center items-center flex-col">
-                    <motion.h3 className="text-neutral-400 dark:text-neutral-200 text-center md:text-left text-xl font-black group-hover:text-white transition-all duration-300 ease-in-out mb-1">
+                    <motion.h3 className="text-black dark:text-neutral-200 text-center md:text-left text-xl font-black group-hover:text-black transition-all duration-300 ease-in-out mb-1">
                         {card.title}
                     </motion.h3>
-                    <motion.p className="text-neutral-400 dark:text-neutral-400 text-center md:text-left text-base group-hover:text-white transition-all duration-300 ease-in-out">
+                    <motion.p className="text-black dark:text-neutral-400 text-center md:text-left text-base group-hover:text-black transition-all duration-300 ease-in-out">
                         {card.description}
                     </motion.p>
                 </div>

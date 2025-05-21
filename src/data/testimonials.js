@@ -65,7 +65,7 @@ const testimonials = [
     },
     {
         quote: "As ML Lead, I explore intelligent systems and build smart solutions that push the boundaries of innovation.",
-        name: "Sephali Srivastava",
+        name: "Shephali Srivastava",
         designation: "ML Lead",
         src: "sephaliSrivastava.jpg",
         linkedIn: "https://www.linkedin.com/in/srisheph/",
