@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 
 import GridDistortionPure from "../../ReactBits/GridDistortion";
 import bg from "/image.webp";
-import { Modal, ModalTrigger } from "@/AccertinityUI/animated-modal";
+import { Modal } from "@/AccertinityUI/animated-modal";
 
 const ThreeDCardDemo = lazy(() => import("../../AccertinityUI/HeroRight"));
 const NavBar = lazy(() => import("./NavBar"));
@@ -35,8 +35,8 @@ const KinesisHeroSection = () => {
                     <div className="flex gap-4 flex-wrap">
                         <div className="relative inline-block cursor-pointer text-center rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white font-bold text-base">
                             <Modal>
-                                <ModalTrigger
-                                    onClick={() => handleLinkClick({ link: "#about" })}
+                                <a
+                                    href="#about"
                                     className="relative cursor-pointer flex justify-center items-center group/modal-btn text-white dark:text-black dark:bg-white bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 overflow-hidden rounded-3xl px-6 py-2"
                                 >
                                     <span className="transition-transform duration-500 group-hover/modal-btn:translate-x-40">
@@ -45,7 +45,7 @@ const KinesisHeroSection = () => {
                                     <div className="absolute inset-0 z-20 flex items-center justify-center -translate-x-40 transition-transform duration-500 group-hover/modal-btn:translate-x-0">
                                         👇🏻
                                     </div>
-                                </ModalTrigger>
+                                </a>
                             </Modal>
                         </div>
                     </div>

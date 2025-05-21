@@ -55,14 +55,14 @@ export const AnimatedTestimonials = ({
             <div className="flex justify-center flex-col items-center sm:flex-row mt-10 gap-8">
                 <CardDemo
                     backgroundImage="/hodSir.jpg"
-                    title="Dr. Ajay Kr. Shrivastava"
-                    description="Driving academic excellence and innovation in AI & Data Science with over two decades of leadership in computer science education"
+                    title="Dean – Dr. Ajay Kumar Srivastava"
+                    description="Ph.D. holder and certified educator guiding innovation, skill development, and academic excellence."
                     linkedin="https://www.linkedin.com/in/dr-ajay-kumar-shrivastava-870a291a/"
                 />
                 <CardDemo
                     backgroundImage="/ShivaniMam.jpg"
-                    title="Ms. Shivani"
-                    description="Assistant Professor at KIET Ghaziabad, specializes in Machine Learning with a focus on innovative, data-driven research solutions"
+                    title="Faculty Coordinator – Ms. Shivani"
+                    description="Supports academics and student initiatives, ensuring smooth coordination and engagement."
                     linkedin="https://www.linkedin.com/in/shivani-kakria-363531217/"
                 />
             </div>
@@ -81,7 +81,7 @@ export const AnimatedTestimonials = ({
                     </h2>
                 </motion.div>
             </div>
-            <FocusCards cards={cards} />;
+            <FocusCards cards={cards} />
 
             {/* Animated Testimonials */}
             <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2 w-9/12 mx-auto py-20">
