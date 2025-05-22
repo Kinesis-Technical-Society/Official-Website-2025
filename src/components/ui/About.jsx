@@ -68,7 +68,7 @@ const Header = React.memo(() => (
             </motion.span>
         </motion.h2>
         <p className="text-base md:text-xl mt-8 text-gray-800">
-            <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of KIET Group of Institutions college, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
+            <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of KIET Group of Institutions, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
             <br />
             <br />
             We focus on key areas such as:
@@ -98,7 +98,7 @@ const ProductCard = React.memo(({ product, translate }) => (
         className="group/product relative shrink-0 h-[12.5rem] md:h-[15rem] lg:h-72 w-[15rem] md:w-[20rem] lg:w-[25rem] mb-6"
     >
         <img
-            loading="lazy"
+            loading="eager"
             src={product.thumbnail}
             alt={product.title}
             className="object-cover object-center absolute h-full w-full inset-0"

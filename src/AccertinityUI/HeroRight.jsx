@@ -42,7 +42,7 @@ export default function ThreeDCardDemo() {
                     <motion.img
                         src={blobImage}
                         alt="Animated Background Blob"
-                        loading="lazy"
+                        loading="eager"
                         className="absolute z-10 w-[300px] sm:w-[400px] md:w-[450px] pointer-events-none"
                         animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -52,7 +52,7 @@ export default function ThreeDCardDemo() {
                     <motion.img
                         src={treeImage}
                         alt="Futuristic Tree"
-                        loading="lazy"
+                        loading="eager"
                         className="absolute z-20 w-[120px] sm:w-[160px] md:w-[200px] invert brightness-[1000%] contrast-[1000%] drop-shadow-[0_0_10px_#ffffff] pointer-events-none"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}

@@ -82,7 +82,7 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
             alt={title}
             src={src}
             onLoad={imageLoaded}
-            loading="lazy"
+            loading="eager"
             decoding="sync"
           />
           {current === index && (

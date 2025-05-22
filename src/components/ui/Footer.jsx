@@ -23,7 +23,7 @@ const SimpleTooltip = ({ items }) => {
               <img
                 src={item.image || "/placeholder.svg"}
                 alt={item.name}
-                loading="lazy"
+                loading="eager"
                 className="rounded-full object-cover h-full w-full"
               />
             </div>
@@ -62,8 +62,8 @@ const Footer = () => {
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center space-x-4 mb-6 md:mb-0">
-            <a href="/#"><img src={ktsLogo} loading="lazy" alt="KTS Logo" className="h-12 w-17" /></a>
-            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} loading="lazy" alt="KIET Logo" className="h-14 w-15" /></a>
+            <a href="/#"><img src={ktsLogo} loading="eager" alt="KTS Logo" className="h-12 w-17" /></a>
+            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} loading="eager" alt="KIET Logo" className="h-14 w-15" /></a>
           </div>
 
           <div className="flex space-x-4">
