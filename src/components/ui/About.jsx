@@ -68,7 +68,7 @@ const Header = React.memo(() => (
             </motion.span>
         </motion.h2>
         <p className="text-base md:text-xl mt-8 text-gray-800">
-            <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of our college, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
+            <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of KIET Group of Institutions college, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
             <br />
             <br />
             We focus on key areas such as:

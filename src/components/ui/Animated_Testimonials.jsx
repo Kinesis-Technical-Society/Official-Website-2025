@@ -54,13 +54,13 @@ export const AnimatedTestimonials = ({
             {/* Top Cards */}
             <div className="flex justify-center flex-col items-center sm:flex-row mt-10 gap-8">
                 <CardDemo
-                    backgroundImage="/hodSir.jpg"
+                    backgroundImage="/hodSir.webp"
                     title="Dean – Dr. Ajay Kumar Srivastava"
                     description="Ph.D. holder and certified educator guiding innovation, skill development, and academic excellence."
                     linkedin="https://www.linkedin.com/in/dr-ajay-kumar-shrivastava-870a291a/"
                 />
                 <CardDemo
-                    backgroundImage="/ShivaniMam.jpg"
+                    backgroundImage="/ShivaniMam.webp"
                     title="Faculty Coordinator – Ms. Shivani"
                     description="Supports academics and student initiatives, ensuring smooth coordination and engagement."
                     linkedin="https://www.linkedin.com/in/shivani-kakria-363531217/"
@@ -120,6 +120,7 @@ export const AnimatedTestimonials = ({
                                     <img
                                         src={testimonial.src}
                                         alt={testimonial.name}
+                                        loading="lazy"
                                         width={500}
                                         height={500}
                                         draggable={false}

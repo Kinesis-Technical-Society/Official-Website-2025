@@ -16,7 +16,7 @@ export const Card = React.memo(({
             "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-48 md:h-56 w-[30%] sm:w-[40%] lg:w-[18%] transition-all duration-300 ease-out py-20"
         )}
     >
-        <img src={card.src} alt={card.title} className="object-cover absolute inset-0 h-full w-full" />
+        <img src={card.src} loading="lazy" alt={card.title} className="object-cover absolute inset-0 h-full w-full" />
         <div
             className={cn(
                 "absolute inset-0 bg-black/50 flex flex-col justify-end items-start px-4 transition-opacity duration-300 py-4",

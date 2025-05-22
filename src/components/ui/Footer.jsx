@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedin, FaPhone, FaTwitter, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import kietLogo from "/kietLogo.png";
-import ktsLogo from "/ktsLogo1.png";
+import kietLogo from "/kietLogo.webp";
+import ktsLogo from "/ktsLogo1.webp";
 import people from "../../data/people";
 import Contact from "./Contact";
 import { Modal } from "@/AccertinityUI/animated-modal";
@@ -23,6 +23,7 @@ const SimpleTooltip = ({ items }) => {
               <img
                 src={item.image || "/placeholder.svg"}
                 alt={item.name}
+                loading="lazy"
                 className="rounded-full object-cover h-full w-full"
               />
             </div>
@@ -61,8 +62,8 @@ const Footer = () => {
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center space-x-4 mb-6 md:mb-0">
-            <a href="/#"><img src={ktsLogo} alt="KTS Logo" className="h-12 w-17" /></a>
-            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} alt="KIET Logo" className="h-14 w-15" /></a>
+            <a href="/#"><img src={ktsLogo} loading="lazy" alt="KTS Logo" className="h-12 w-17" /></a>
+            <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} loading="lazy" alt="KIET Logo" className="h-14 w-15" /></a>
           </div>
 
           <div className="flex space-x-4">
@@ -127,7 +128,7 @@ const Footer = () => {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400" />
             </h3>
             <ul className="space-y-3">
-              {["WEB Dev", "Android Dev", "Machine Learning", "UI/UX"].map((item) => (
+              {["Web Development", "Android Development", "Machine Learning", "UI/UX"].map((item) => (
                 <li key={item}>
                   <a href="/#domains" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
                     {item}
