@@ -14,17 +14,28 @@ import { AnimatedTestimonials } from './components/ui/Animated_Testimonials';
 import { HoverEffect } from './components/ui/OurDomains';
 import NabBar from './components/ui/NavBar';
 import { AppleCardsCarouselDemo } from './components/ui/AppleCardsCarouselDemo';
-import NotFound from './components/ui/NotFound'; // ✅ import
+import NotFound from './components/ui/NotFound';
 
 import { products } from './data/products';
 import testimonials from './data/testimonials';
 import domains from './data/domains';
 
 import './App.css';
+import EventPopup from './components/ui/EventPopUp';
+import upcomingEvents from './data/upcomingEvents';
+import ProjectsPage from './components/ui/Projects';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+  const [showEventPopup, setShowEventPopup] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const timer = setTimeout(() => setShowEventPopup(true), 500); // slight delay
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -55,11 +66,12 @@ const App = () => {
   );
 
   const BlogPage = () => <AppleCardsCarouselDemo />;
+  const Projects = () => <ProjectsPage />;
 
   if (loading) return <Loader />;
 
-  // Route check for hiding Navbar & Footer on 404
-  const is404 = location.pathname !== '/' && location.pathname !== '/blogs';
+  const knownRoutes = ['/', '/blogs', '/projects'];
+  const is404 = !knownRoutes.includes(location.pathname);
 
   return (
     <div className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full' id='home'>
@@ -78,9 +90,15 @@ const App = () => {
         </>
       )}
 
+      <EventPopup
+        isVisible={showEventPopup}
+        onClose={() => setShowEventPopup(false)}
+        events={upcomingEvents}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blogs" element={<BlogPage />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

@@ -4,6 +4,11 @@
      display: none;
  }
 
+ .no-scroll {
+     overflow: hidden !important;
+     height: 100vh;
+ } 
+
  @keyframes fadeout {
      0% {
          opacity: 0.7;

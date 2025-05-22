@@ -46,12 +46,12 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[999]">
+    <div className="pointer-events-none fixed inset-0 z-[99999]">
       <AnimatePresence>
         {trail.map((point) => (
           <motion.div
             key={point.id}
-            className="w-2 h-2 rounded-full bg-pink-300 blur-[2px] shadow-md"
+            className="w-4 h-4 rounded-full bg-pink-300 blur-[2px] shadow-md"
             initial={{ opacity: 1, scale: 1 }}
             animate={{ opacity: 0, scale: 0.5 }}
             exit={{ opacity: 0 }}

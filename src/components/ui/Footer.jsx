@@ -6,6 +6,7 @@ import ktsLogo from "/ktsLogo1.webp";
 import people from "../../data/people";
 import Contact from "./Contact";
 import { Modal } from "@/AccertinityUI/animated-modal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SimpleTooltip = ({ items }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -53,6 +54,17 @@ const Footer = () => {
       setIsOpen(true);
     } else {
       window.location.href = link;
+    }
+  };
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (location.pathname === '/projects') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/projects');
     }
   };
 
@@ -130,9 +142,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {["Web Development", "Android Development", "Machine Learning", "UI/UX"].map((item) => (
                 <li key={item}>
-                  <a href="/#domains" className="text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block">
+                  <button
+                    onClick={handleClick}
+                    className="cursor-pointer text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block"
+                  >
                     {item}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
