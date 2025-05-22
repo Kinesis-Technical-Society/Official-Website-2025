@@ -21,7 +21,7 @@ import testimonials from './data/testimonials';
 import domains from './data/domains';
 
 import './App.css';
-import EventPopup from './components/ui/EventPopUp';
+import EventPopup from './components/ui/EventPopup';
 import upcomingEvents from './data/upcomingEvents';
 import ProjectsPage from './components/ui/Projects';
 
