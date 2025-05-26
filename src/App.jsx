@@ -90,11 +90,11 @@ const App = () => {
         </>
       )}
 
-      <EventPopup
+      {/* <EventPopup
         isVisible={showEventPopup}
         onClose={() => setShowEventPopup(false)}
         events={upcomingEvents}
-      />
+      /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blogs" element={<BlogPage />} />
