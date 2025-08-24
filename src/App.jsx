@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowAltCircleUp } from 'react-icons/fa';
 import { Routes, Route, useLocation } from 'react-router-dom'; // ✅ include useLocation
@@ -7,13 +7,13 @@ import Loader from './components/ui/Loader';
 import CustomCursor from './components/ui/CustomCursor';
 import { BackgroundBeamsWithCollision } from './components/ui/BgBeamsWithCollision';
 import KinesisHeroSection from './components/ui/Home';
-import { HeroParallax } from './components/ui/About';
-import CarouselDemo from './components/ui/Events';
-import Footer from './components/ui/Footer';
-import { AnimatedTestimonials } from './components/ui/Animated_Testimonials';
-import { HoverEffect } from './components/ui/OurDomains';
+// import { HeroParallax } from './components/ui/About';
+// import CarouselDemo from './components/ui/Events';
+// import Footer from './components/ui/Footer';
+// import { AnimatedTestimonials } from './components/ui/Animated_Testimonials';
+// import { HoverEffect } from './components/ui/OurDomains';
 import NabBar from './components/ui/NavBar';
-import { AppleCardsCarouselDemo } from './components/ui/AppleCardsCarouselDemo';
+// import { AppleCardsCarouselDemo } from './components/ui/AppleCardsCarouselDemo';
 import NotFound from './components/ui/NotFound';
 
 import { products } from './data/products';
@@ -24,6 +24,24 @@ import './App.css';
 import EventPopup from './components/ui/EventPopup';
 import upcomingEvents from './data/upcomingEvents';
 import ProjectsPage from './components/ui/Projects';
+const Footer = lazy(() => import("./components/ui/Footer"));
+const HeroParallax = lazy(() =>
+  import("./components/ui/About").then((m) => ({ default: m.HeroParallax }))
+);
+const AnimatedTestimonials = lazy(() =>
+  import("./components/ui/Animated_Testimonials").then((m) => ({
+    default: m.AnimatedTestimonials,
+  }))
+);
+const HoverEffect = lazy(() =>
+  import("./components/ui/OurDomains").then((m) => ({ default: m.HoverEffect }))
+);
+const AppleCardsCarouselDemo = lazy(() =>
+  import("./components/ui/AppleCardsCarouselDemo").then((m) => ({
+    default: m.AppleCardsCarouselDemo,
+  }))
+);
+const CarouselDemo = lazy(() => import("./components/ui/Events"));
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -58,14 +76,29 @@ const App = () => {
       <BackgroundBeamsWithCollision className='w-full'>
         <KinesisHeroSection />
       </BackgroundBeamsWithCollision>
-      <HeroParallax products={products} />
-      <CarouselDemo />
-      <HoverEffect cards={domains} />
-      <AnimatedTestimonials testimonials={testimonials} />
+      <Suspense fallback={<Loader />}>
+        <HeroParallax products={products} />
+      </Suspense>
+      <Suspense fallback={<Loader />}>
+        <CarouselDemo />
+      </Suspense>
+
+      <Suspense fallback={<Loader />}>
+        <HoverEffect cards={domains} />
+      </Suspense>
+
+      <Suspense fallback={<Loader />}>
+        <AnimatedTestimonials testimonials={testimonials} />
+      </Suspense>
     </>
   );
 
-  const BlogPage = () => <AppleCardsCarouselDemo />;
+  // const BlogPage = () => <AppleCardsCarouselDemo />;
+  const BlogPage = () => (
+    <Suspense fallback={<Loader />}>
+      <AppleCardsCarouselDemo />
+    </Suspense>
+  );
   const Projects = () => <ProjectsPage />;
 
   if (loading) return <Loader />;
@@ -102,7 +135,11 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {!is404 && <Footer />}
+      {!is404 && (
+        <Suspense fallback={<Loader />}>
+          <Footer />
+        </Suspense>
+      )}
     </div>
   );
 };
