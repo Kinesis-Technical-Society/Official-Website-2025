@@ -76,16 +76,20 @@ const ProjectsPage = () => {
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white pt-36 pb-20 px-5 md:px-10">
             <div className="max-w-7xl mx-auto">
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
-                        Projects
-                    </h2>
-                </motion.div>
+                <div className="w-9/12 mx-auto text-center">
+                    <motion.div
+                        className="text-center mb-12 z-10"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center font-orbitron">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
+                                Projects
+                            </span>
+                        </h2>
+                    </motion.div>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, index) => (

@@ -19,6 +19,7 @@ import NotFound from './components/ui/NotFound';
 import { products } from './data/products';
 import testimonials from './data/testimonials';
 import domains from './data/domains';
+import Recruitment from './components/ui/Recruitment.jsx';
 
 import './App.css';
 import EventPopup from './components/ui/EventPopup';
@@ -76,35 +77,36 @@ const App = () => {
       <BackgroundBeamsWithCollision className='w-full'>
         <KinesisHeroSection />
       </BackgroundBeamsWithCollision>
-      <Suspense fallback={<Loader />}>
+      {/* <Suspense fallback={<Loader />}>
         <HeroParallax products={products} />
-      </Suspense>
-      <Suspense fallback={<Loader />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<Loader />}>
         <CarouselDemo />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<Loader />}>
+      {/* <Suspense fallback={<Loader />}>
         <HoverEffect cards={domains} />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<Loader />}>
+      {/* <Suspense fallback={<Loader />}>
         <AnimatedTestimonials testimonials={testimonials} />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 
   // const BlogPage = () => <AppleCardsCarouselDemo />;
-  const BlogPage = () => (
-    <Suspense fallback={<Loader />}>
-      <AppleCardsCarouselDemo />
-    </Suspense>
-  );
-  const Projects = () => <ProjectsPage />;
+  // const BlogPage = () => (
+  //   <Suspense fallback={<Loader />}>
+  //     <AppleCardsCarouselDemo />
+  //   </Suspense>
+  // );
+  // const Projects = () => <ProjectsPage />;
 
   if (loading) return <Loader />;
 
-  const knownRoutes = ['/', '/blogs', '/projects'];
-  const is404 = !knownRoutes.includes(location.pathname);
+  const knownRoutes = ['/about', '/blogs', '/projects', '/team', '/events', '/domains', '/register'];
+  const is404 = !knownRoutes.includes(location.pathname) && location.pathname !== '/';
+  const is404Footer = !knownRoutes.includes(location.pathname) && location.pathname === '/';
 
   return (
     <div className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full' id='home'>
@@ -123,19 +125,32 @@ const App = () => {
         </>
       )}
 
-      {/* <EventPopup
+      <EventPopup
         isVisible={showEventPopup}
         onClose={() => setShowEventPopup(false)}
         events={upcomingEvents}
-      /> */}
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<BlogPage />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/about" element={<HeroParallax products={products} />} />
+        <Route path="/team" element={<AnimatedTestimonials testimonials={testimonials} />} />
+        <Route path="/events" element={<CarouselDemo />} />
+        <Route path="/blogs" element={<Suspense fallback={<Loader />}>
+          <AppleCardsCarouselDemo />
+        </Suspense>} />
+        <Route path="/projects" element={<Suspense fallback={<Loader />}>
+          <ProjectsPage />
+        </Suspense>} />
+        <Route path="/domains" element={<Suspense fallback={<Loader />}>
+          <HoverEffect cards={domains} />
+        </Suspense>} />
+        <Route path="/register" element={<Suspense fallback={<Loader />}>
+          <Recruitment />
+        </Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {!is404 && (
+      {!is404Footer && (
         <Suspense fallback={<Loader />}>
           <Footer />
         </Suspense>

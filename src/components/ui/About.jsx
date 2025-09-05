@@ -24,7 +24,7 @@ export const HeroParallax = ({ products }) => {
         <div
             id="about"
             ref={ref}
-            className="min-h-screen pt-32 pb-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-gradient-to-b from-[#dfdbdc] via-[#4a4b8a] to-[#0b0434]"
+            className="min-h-screen pt-32 pb-32 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white"
         >
             <Header />
             <motion.div style={{ rotateX, rotateZ, translateY, opacity }}>
@@ -45,29 +45,22 @@ export const HeroParallax = ({ products }) => {
 
 const Header = React.memo(() => (
     <div className="relative mx-auto py-0 md:py-0 px-4 w-9/12 left-0 top-0">
-        <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight font-orbitron"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-            About Our{" "}
-            <motion.span
-                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-indigo-800 to-cyan-700"
-                initial={{ backgroundPosition: "200% center" }}
-                animate={{ backgroundPosition: "0% center" }}
-                transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                }}
-                style={{ backgroundSize: "200%" }}
+        <div className="w-9/12 mx-auto text-center">
+            <motion.div
+                className="text-center mb-12 z-10"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
             >
-                Society
-            </motion.span>
-        </motion.h2>
-        <p className="text-base md:text-xl mt-8 text-gray-800">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center font-orbitron">
+                    <span className="text-white">About Our </span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
+                        Society
+                    </span>
+                </h2>
+            </motion.div>
+        </div>
+        <p className="text-base md:text-xl mt-8 text-white">
             <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of KIET Group of Institutions, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
             <br />
             <br />

@@ -36,14 +36,14 @@ const KinesisHeroSection = () => {
                         <div className="relative inline-block cursor-pointer text-center rounded-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white font-bold text-base">
                             <Modal>
                                 <a
-                                    href="#about"
+                                    href="/about"
                                     className="relative cursor-pointer flex justify-center items-center group/modal-btn text-white dark:text-black dark:bg-white bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 overflow-hidden rounded-3xl px-6 py-2"
                                 >
                                     <span className="transition-transform duration-500 group-hover/modal-btn:translate-x-40">
                                         Explore
                                     </span>
                                     <div className="absolute inset-0 z-20 flex items-center justify-center -translate-x-40 transition-transform duration-500 group-hover/modal-btn:translate-x-0">
-                                        👇🏻
+                                        👉🏻
                                     </div>
                                 </a>
                             </Modal>

@@ -74,7 +74,7 @@ const Footer = () => {
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center space-x-4 mb-6 md:mb-0">
-            <a href="/#"><img src={ktsLogo} loading="eager" alt="KTS Logo" className="h-12 w-17" /></a>
+            <a href="/"><img src={ktsLogo} loading="eager" alt="KTS Logo" className="h-12 w-17" /></a>
             <a href="https://www.kiet.edu/" target="_blank"><img src={kietLogo} loading="eager" alt="KIET Logo" className="h-14 w-15" /></a>
           </div>
 
@@ -116,8 +116,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: "Message", link: null },
-                { name: "Team", link: "/#team" },
-                { name: "Functioning", link: "/#domains" }
+                { name: "Team", link: "/team" },
+                { name: "Functioning", link: "/domains" }
               ].map(({ name, link }) => (
                 <li key={name}>
                   <a
@@ -142,12 +142,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {["Web Development", "Android Development", "Machine Learning", "UI/UX"].map((item) => (
                 <li key={item}>
-                  <button
-                    onClick={handleClick}
+                  <a
+                    href="/projects"
+                    // onClick={handleClick}
                     className="cursor-pointer text-sm text-gray-300 hover:text-white hover:translate-x-1 transition duration-200 inline-block"
                   >
                     {item}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

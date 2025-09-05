@@ -1,55 +1,56 @@
  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
  body::-webkit-scrollbar {
-     display: none;
+   display: none;
  }
 
  .no-scroll {
-     overflow: hidden !important;
-     height: 100vh;
- } 
+   overflow: hidden !important;
+   height: 100vh;
+ }
 
  @keyframes fadeout {
-     0% {
-         opacity: 0.7;
-         transform: scale(1);
-     }
+   0% {
+     opacity: 0.7;
+     transform: scale(1);
+   }
 
-     100% {
-         opacity: 0;
-         transform: scale(2);
-     }
+   100% {
+     opacity: 0;
+     transform: scale(2);
+   }
  }
 
  .fadeout {
-     animation: fadeout 0.5s ease-out forwards;
+   animation: fadeout 0.5s ease-out forwards;
  }
 
  .font-orbitron {
-     font-family: 'poppins', sans-serif;
+   font-family: 'poppins', sans-serif;
  }
+
  * {
-  scrollbar-width: auto;
-  scrollbar-color: #afb2bf;
-}
+   scrollbar-width: none;
+   scrollbar-color: #afb2bf;
+ }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 3px;
-}
+ /* Chrome, Edge, and Safari */
+ *::-webkit-scrollbar {
+   width: 3px;
+ }
 
-*::-webkit-scrollbar-track {
-  background: #000814;
-}
+ *::-webkit-scrollbar-track {
+   background: #000814;
+ }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #afb2bf;
-  border-radius: 10px;
-  visibility: hidden;
-}
+ *::-webkit-scrollbar-thumb {
+   background-color: #afb2bf;
+   border-radius: 10px;
+   visibility: hidden;
+ }
 
-*:active::-webkit-scrollbar-thumb,
-*:focus::-webkit-scrollbar-thumb,
-*:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
-}
+ *:active::-webkit-scrollbar-thumb,
+ *:focus::-webkit-scrollbar-thumb,
+ *:hover::-webkit-scrollbar-thumb {
+   visibility: visible;
+ } 

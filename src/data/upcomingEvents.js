@@ -1,37 +1,37 @@
 const upcomingEvents = [
     {
-        title: "🚀 Ready to Code the Future?",
-        date: "📅 Dates: 25th May – 28th May 2025",
-        description: `💡 JavaScript Bootcamp – Unlock the Power of the Web
+        title: "🌟 KTS Recruitment Drive 2025",
+        date: "📅 Registrations Open: 7th – 12th September 2025",
+        description: `🚀 Be a Part of Kinesis Technical Society (KTS)!
 
-🎯 Open To: 1st & 2nd Year Students (All Branches)
-🏢 Organized By: Kinesis Technical Society (KTS)
+🎯 Who Can Apply?
+1st Year & 2nd Year Students (All Branches)
 
-💥 Why Should You Join?
+💡 Why Join KTS?
+KTS is the official technical society of KIET where innovation meets teamwork.  
+We work on exciting projects, host events, and build skills that go beyond classrooms.  
+This is your chance to explore your passion, learn from peers, and contribute to impactful projects.
 
-Because JavaScript isn’t just a language — it’s the heartbeat of modern websites, dynamic apps, and interactive platforms. Whether you dream of becoming a frontend wizard 🧙‍♂ or building your own startup 🚀, this bootcamp is your first real step into the developer world.
+🔍 Domains You Can Apply For:  
+- 💻 Web Development  
+- 📱 App Development    
+- ⚡ DSA / CP 
+- 📊 Machine Learning
+- 🎨 Design & UI/UX  
 
-You’ll learn:
+🌟 What You Get:  
+✅ Work on real projects & events  
+✅ Mentorship from seniors  
+✅ Hands-on experience in your choosen domain  
+✅ Networking with like-minded peers  
+✅ A platform to showcase your skills  
 
-✅ The JavaScript Fundamentals (no boring slides!)
-✅ Hands-on Coding with Live Demos
-✅ Building Mini Projects — right from day one!
-✅ Cool tricks, best practices & debugging like a pro
-✅ How to think like a dev 👨‍💻👩‍💻
+💬 “Don’t just be a student — be a creator, innovator, and leader with KTS!”  
 
-🌟 What You Get:
-
-🎓 Beginner-friendly Sessions
-🛠 Real-world Coding Experience
-🎁 Participation Certificate
-🧠 Mentorship from Seniors
-👥 Connect with the Developer Community
-
-💬 "You don’t need to be great to start, but you have to start to be great."
-
-So what are you waiting for?`,
-        registerLink: "https://forms.gle/pZvzZhFyy9YcZ4jY6"
-    }
+So what are you waiting for? Step into the world of tech with us 🚀  
+`,
+        registerLink: "/register",
+    },
 ];
 
 export default upcomingEvents;

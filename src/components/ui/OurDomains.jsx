@@ -20,10 +20,10 @@ export const HoverEffect = ({ cards }) => {
     useOutsideClick(ref, () => setActive(null));
 
     return (
-        <section id="domains" className="min-h-screen bg-gradient-to-b from-[#ffffff] via-[#4a4b8a] to-[#0b0434] pt-32">
+        <section id="domains" className="min-h-screen bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white p-32">
             <AnimatePresence>
                 {active && typeof active === "object" && (
-                    <motion.div
+                    <motion.div 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -94,28 +94,21 @@ export const HoverEffect = ({ cards }) => {
                 )}
             </AnimatePresence>
 
-            <motion.h2
-                className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight font-orbitron"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-                Our{" "}
-                <motion.span
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-indigo-800 to-cyan-700"
-                    initial={{ backgroundPosition: "200% center" }}
-                    animate={{ backgroundPosition: "0% center" }}
-                    transition={{
-                        duration: 2,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                    }}
-                    style={{ backgroundSize: "200%" }}
+            <div className="w-9/12 mx-auto text-center">
+                <motion.div
+                    className="text-center mb-12 z-10"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
                 >
-                    Domains
-                </motion.span>
-            </motion.h2>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center font-orbitron">
+                        <span className="text-white">Our </span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
+                            Domains
+                        </span>
+                    </h2>
+                </motion.div>
+            </div>
 
             <ul className="max-w-4xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center gap-6">
                 {cards.map((item, idx) => (
