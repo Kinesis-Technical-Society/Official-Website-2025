@@ -9,19 +9,23 @@ const Recruitment = () => {
 
   const [formData, setFormData] = useState({
     name: "",
-    gender: "",
-    kiet_email: "",
-    year: "",
-    roll_no: "",
     branch: "",
+    roll_no: "",
+    year: "",
     phone_number: "",
-    preferred_domain: "",
+    kiet_email: "",
+    domain_pref_1: "",
+    domain_pref_2: "",
+    personal_email: "",
+    creative_domain: "",
+    hosteller: "",
+    refer: "",
     why_kts: "",
-    extra_curricular: "",
   });
 
   const nav = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false); // ✅ new state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,52 +33,45 @@ const Recruitment = () => {
   };
 
   const validateForm = () => {
-    const { name, gender, kiet_email, year, roll_no, branch, phone_number, preferred_domain, why_kts, extra_curricular } = formData;
+    const {
+      name,
+      gender,
+      branch,
+      roll_no,
+      year,
+      phone_number,
+      kiet_email,
+      domain_pref_1,
+      domain_pref_2,
+      personal_email,
+      creative_domain,
+      hosteller,
+      refer,
+      why_kts,
+    } = formData;
 
-    if (!name.trim()) {
-      Swal.fire("Error", "Name is required", "error");
-      return false;
-    }
-
-    if (!gender) {
-      Swal.fire("Error", "Gender is required", "error");
-      return false;
-    }
-
-    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email)) {
-      Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
-      return false;
-    }
-
-    if (!year.trim()) {
-      Swal.fire("Error", "Year is required", "error");
-      return false;
-    }
-
-    if (!roll_no.trim()) {
-      Swal.fire("Error", "University Roll No. is required", "error");
-      return false;
-    }
-
-    if (!branch.trim()) {
-      Swal.fire("Error", "Branch is required", "error");
-      return false;
-    }
-
-    if (!/^[0-9]{10}$/.test(phone_number)) {
-      Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
-      return false;
-    }
-
-    if (!preferred_domain.trim()) {
-      Swal.fire("Error", "Please select your preferred domain", "error");
-      return false;
-    }
-
-    if (!why_kts.trim()) {
-      Swal.fire("Error", "Please tell us why you want to join KTS", "error");
-      return false;
-    }
+    if (!name.trim()) return Swal.fire("Error", "Name is required", "error");
+    if (!gender.trim()) return Swal.fire("Error", "Gender is required", "error");
+    if (!branch.trim()) return Swal.fire("Error", "Branch is required", "error");
+    if (!roll_no.trim())
+      return Swal.fire("Error", "University Roll No./User Id is required", "error");
+    if (!year.trim()) return Swal.fire("Error", "Year is required", "error");
+    if (!/^[0-9]{10}$/.test(phone_number))
+      return Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
+    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email))
+      return Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
+    if (!domain_pref_1.trim())
+      return Swal.fire("Error", "Please select Domain Preference 1", "error");
+    if (!domain_pref_2.trim())
+      return Swal.fire("Error", "Please select Domain Preference 2", "error");
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(personal_email))
+      return Swal.fire("Error", "Personal Email is required", "error");
+    if (!creative_domain.trim())
+      return Swal.fire("Error", "Please select a Creative Domain option", "error");
+    if (!hosteller.trim())
+      return Swal.fire("Error", "Please select Hosteller/Day Scholar", "error");
+    if (!why_kts.trim())
+      return Swal.fire("Error", "Please tell us why you want to join", "error");
 
     return true;
   };
@@ -86,27 +83,38 @@ const Recruitment = () => {
     setLoading(true);
 
     const body = new FormData();
-    Object.entries(formData).forEach(([key, value]) => body.append(key, value.toString()));
+    Object.entries(formData).forEach(([key, value]) =>
+      body.append(key, value.toString())
+    );
 
     try {
       const response = await fetch(scriptURL, { method: "POST", body });
       const result = await response.text();
 
       if (result.includes("success")) {
+        setSubmitted(true); // ✅ show success box
         Swal.fire("Success 🎉", "Form submitted successfully!", "success");
         setFormData({
           name: "",
           gender: "",
-          kiet_email: "",
-          year: "",
-          roll_no: "",
           branch: "",
+          roll_no: "",
+          year: "",
           phone_number: "",
-          preferred_domain: "",
+          kiet_email: "",
+          domain_pref_1: "",
+          domain_pref_2: "",
+          personal_email: "",
+          creative_domain: "",
+          hosteller: "",
+          refer: "",
           why_kts: "",
-          extra_curricular: "",
         });
-        nav('/');
+
+        // ✅ Navigate after 10s
+        setTimeout(() => {
+          nav("/");
+        }, 10000);
       } else if (result.includes("duplicate")) {
         Swal.fire("Error", "This KIET email is already registered!", "error");
       } else {
@@ -121,7 +129,6 @@ const Recruitment = () => {
 
   return (
     <div className="bg-gradient-to-b pt-36 from-[#0b0434] via-[#4a4b8a] to-white min-h-screen flex flex-col justify-center items-center p-6">
-      {/* Title */}
       <motion.h2
         className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-8 font-orbitron relative z-10"
         initial={{ opacity: 0, y: -20 }}
@@ -129,201 +136,357 @@ const Recruitment = () => {
         transition={{ duration: 1 }}
       >
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-yellow-300">
-          Register Now
+          KTS Recruitment 2025-26
         </span>
       </motion.h2>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-2xl rounded-2xl shadow-2xl p-8 backdrop-blur-lg bg-white/20 border border-white/30 group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 w-full transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-1.5 hover:bg-white/20 hover:border-white/30 overflow-hidden"
-      >
-        {/* Animated background gradient on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 via-pink-400/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-xl"></div>
 
-        {/* Floating particles */}
-        <div className="absolute -top-1 -right-1 w-20 h-20 bg-gradient-to-br from-pink-400/20 to-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out group-hover:animate-pulse"></div>
-        <div className="absolute -bottom-1 -left-1 w-16 h-16 bg-gradient-to-tr from-blue-400/20 to-cyan-400/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-100 group-hover:animate-pulse"></div>
+      {!submitted ? (
+        <motion.div
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-2xl rounded-2xl shadow-2xl p-8 backdrop-blur-lg bg-white/20 border border-white/30 group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 w-full transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-purple-500/25 hover:bg-white/20 hover:border-white/30 overflow-hidden"
+        >
+          {/* Animated background gradient on hover */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 via-pink-400/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-xl"></div>
+          {/* Floating particles */}
+          <div className="absolute -top-1 -right-1 w-20 h-20 bg-gradient-to-br from-pink-400/20 to-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out group-hover:animate-pulse"></div> <div className="absolute -bottom-1 -left-1 w-16 h-16 bg-gradient-to-tr from-blue-400/20 to-cyan-400/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-100 group-hover:animate-pulse"></div>
+          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            {/* Name */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:drop-shadow-lg">Name *</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="Not your crush’s name, YOURS..."
+                required
+              />
+            </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-          {/* Name */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Name *</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="Enter your full name"
-              required
-            />
-          </div>
+            {/* Gender */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Gender *</label>
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">What’s your avatar?...</option>
+                <option value="Male" className="text-black">
+                  Male
+                </option>
+                <option value="Female" className="text-black">
+                  Female
+                </option>
+                <option value="Other" className="text-black">
+                  Other
+                </option>
+              </select>
+            </div>
 
-          {/* Gender */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Gender *</label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              required
-            >
-              <option value="">Choose...</option>
-              <option value="Male" className="text-black">Male</option>
-              <option value="Female" className="text-black">Female</option>
-              <option value="Other" className="text-black">Other</option>
-            </select>
-          </div>
+            {/* Branch */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Branch *</label>
+              <input
+                type="text"
+                name="branch"
+                value={formData.branch}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="CSE / IT / ECE … or Hogwarts?..."
+                required
+              />
+            </div>
 
-          {/* KIET Email */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">KIET Email *</label>
-            <input
-              type="email"
-              name="kiet_email"
-              value={formData.kiet_email}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="example@kiet.edu"
-              required
-            />
-          </div>
+            {/* Roll No */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">
+                University Roll Number / User Id *
+              </label>
+              <input
+                type="text"
+                name="roll_no"
+                value={formData.roll_no}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="The magical digits KIET gave you..."
+                required
+              />
+            </div>
 
-          {/* Year */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Year *</label>
-            <select
-              name="year"
-              value={formData.year}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              required
-            >
-              <option value="">Choose...</option>
-              <option value="1st" className="text-black">1st Year</option>
-              <option value="2nd" className="text-black">2nd Year</option>
-            </select>
-          </div>
+            {/* Year */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Year *</label>
+              <select
+                name="year"
+                value={formData.year}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">Freshie 1st or 2nd Pro Max...</option>
+                <option value="1st" className="text-black">
+                  1st Year
+                </option>
+                <option value="2nd" className="text-black">
+                  2nd Year
+                </option>
+              </select>
+            </div>
 
-          {/* Roll No */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">University Roll No. *</label>
-            <input
-              type="text"
-              name="roll_no"
-              value={formData.roll_no}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="Enter university roll number"
-              required
-            />
-          </div>
+            {/* Phone Number */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Phone Number *</label>
+              <input
+                type="tel"
+                name="phone_number"
+                value={formData.phone_number}
+                onChange={handleChange}
+                maxLength={10}
+                pattern="[0-9]{10}"
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="Only 10 digits… no country codes please..."
+                required
+              />
+            </div>
 
-          {/* Branch */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Branch *</label>
-            <input
-              type="text"
-              name="branch"
-              value={formData.branch}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="CSE / IT / ECE / etc."
-              required
-            />
-          </div>
+            {/* KIET Email */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">KIET Email Id *</label>
+              <input
+                type="email"
+                name="kiet_email"
+                value={formData.kiet_email}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="example@kiet.edu (No Gmail here)..."
+                required
+              />
+            </div>
 
-          {/* Phone Number */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Phone Number *</label>
-            <input
-              type="tel"
-              name="phone_number"
-              value={formData.phone_number}
-              onChange={handleChange}
-              maxLength={10}
-              pattern="[0-9]{10}"
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="10-digit mobile number"
-              required
-            />
-          </div>
+            {/* Domain Preference 1 */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Domain Preference 1 *</label>
+              <select
+                name="domain_pref_1"
+                value={formData.domain_pref_1}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">Your dream tech zone...</option>
+                <option value="Web Development" className="text-black">
+                  Web Development
+                </option>
+                <option value="DSA/CP" className="text-black">
+                  DSA/CP
+                </option>
+                <option value="Android Development" className="text-black">
+                  Android Development
+                </option>
+                <option value="Machine Learning" className="text-black">
+                  Machine Learning
+                </option>
+                <option value="UI/UX" className="text-black">
+                  UI/UX
+                </option>
+              </select>
+            </div>
 
-          {/* Preferred Domain */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Preferred Domain *</label>
-            <select
-              name="preferred_domain"
-              value={formData.preferred_domain}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              required
-            >
-              <option value="">Choose...</option>
-              <option value="Web Development" className="text-black">Web Development</option>
-              <option value="Android" className="text-black">Android Development</option>
-              <option value="ML" className="text-black">Machine Learning</option>
-              <option value="DSA/CP" className="text-black">DSA / CP</option>
-              <option value="UI/UX" className="text-black">UI / UX</option>
-              <option value="Video Editing" className="text-black">Video Editing</option>
-            </select>
-          </div>
+            {/* Domain Preference 2 */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Domain Preference 2 *</label>
+              <select
+                name="domain_pref_2"
+                value={formData.domain_pref_2}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">Plan B… just in case...</option>
+                <option value="Web Development" className="text-black">
+                  Web Development
+                </option>
+                <option value="DSA/CP" className="text-black">
+                  DSA/CP
+                </option>
+                <option value="Android Development" className="text-black">
+                  Android Development
+                </option>
+                <option value="Machine Learning" className="text-black">
+                  Machine Learning
+                </option>
+                <option value="UI/UX" className="text-black">
+                  UI/UX
+                </option>
+              </select>
+            </div>
 
-          {/* Why KTS */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Why KTS? *</label>
-            <textarea
-              name="why_kts"
-              value={formData.why_kts}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="Tell us why you want to join KTS..."
-              rows="3"
-              required
-            ></textarea>
-          </div>
+            {/* Personal Email */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Personal Email Id *</label>
+              <input
+                type="email"
+                name="personal_email"
+                value={formData.personal_email}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="Your backup inbox (not mom’s email)..."
+                required
+              />
+            </div>
 
-          {/* Extra Curricular */}
-          <div>
-            <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Extra Curricular</label>
-            <textarea
-              name="extra_curricular"
-              value={formData.extra_curricular}
-              onChange={handleChange}
-              className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-              placeholder="Mention your extra curricular activities..."
-              rows="3"
-            ></textarea>
-          </div>
+            {/* Creative Domain */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">
+                Are you Interested in any Creative Domain? *
+              </label>
+              <select
+                name="creative_domain"
+                value={formData.creative_domain}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">Unleash your inner artist or say None...</option>
+                <option value="Video Editing" className="text-black">
+                  Video Editing
+                </option>
+                <option value="Photography" className="text-black">
+                  Photography
+                </option>
+                <option
+                  value="PR (Social Media Content Planning)"
+                  className="text-black"
+                >
+                  PR - Social Media Content Planning
+                </option>
+                <option value="Content Writing" className="text-black">
+                  Content Writing
+                </option>
+                <option value="None" className="text-black">
+                  None
+                </option>
+              </select>
+            </div>
 
-          {/* Submit */}
-          <motion.button
-            whileHover={!loading ? { scale: 1.05 } : {}}
-            whileTap={!loading ? { scale: 0.95 } : {}}
-            type="submit"
-            disabled={loading}
-            className={`w-full py-3 rounded-xl font-semibold text-white transition 
+            {/* Hosteller / Day Scholar */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Are you ? *</label>
+              <select
+                name="hosteller"
+                value={formData.hosteller}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                required
+              >
+                <option value="" className="text-gray-500">Hosteller (night owl) / Day Scholar (home food)...</option>
+                <option value="Hosteller" className="text-black">
+                  Hosteller
+                </option>
+                <option value="Day Scholar" className="text-black">
+                  Day Scholar
+                </option>
+              </select>
+            </div>
+
+            {/* Refer By */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">Refer By</label>
+              <input
+                type="text"
+                name="refer"
+                value={formData.refer}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="The legend who dragged you here..."
+              />
+            </div>
+
+            {/* Why join us */}
+            <div>
+              <label className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">
+                Why do you want to join us? *
+              </label>
+              <textarea
+                name="why_kts"
+                value={formData.why_kts}
+                onChange={handleChange}
+                className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
+                placeholder="Convince us like Shark Tank..."
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            {/* Submit */}
+            <motion.button
+              whileHover={!loading ? { scale: 1.05 } : {}}
+              whileTap={!loading ? { scale: 0.95 } : {}}
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 rounded-xl font-semibold text-white transition 
               ${loading
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:shadow-purple-400/40"
-              }`}
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:shadow-lg hover:shadow-purple-400/40"
+                }`}
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </motion.button>
+          </form>
+
+          {/* Shine Effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"> <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div> </div>
+          {/* Border Glow */}
+          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-blue-500/50 blur-sm -z-10 transform scale-105"></div>
+        </motion.div>
+      ) : (
+        // ✅ Success box WhatsApp link
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="bg-gradient-to-r from-purple-600/30 via-indigo-600/30 to-blue-600/30 backdrop-blur-xl 
+             p-10 rounded-2xl shadow-2xl text-center text-white max-w-lg border border-white/20"
+        >
+          <h2 className="text-4xl font-extrabold mb-4 drop-shadow-lg">
+            🎉 Welcome to <span className="text-yellow-300">KTS</span>!
+          </h2>
+
+          <p className="mb-4 text-lg font-medium">
+            Congratulations recruit, you just unlocked <br />
+            <span className="text-green-300 font-bold">LEVEL 1: Registration ✅</span>
+          </p>
+
+          <p className="mb-6 text-sm italic text-gray-200">
+            Next mission awaits you in the <br />
+            <span className="text-green-400">Secret WhatsApp Hideout 🔥</span>
+          </p>
+
+          <a
+            href="https://chat.whatsapp.com/GUz0SHj9RrXERicSLQjvp0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 
+               rounded-xl shadow-md transition-transform transform hover:scale-105"
           >
-            {loading ? "Submitting..." : "Submit"}
-          </motion.button>
-        </form>
+            🚀 Join WhatsApp Squad
+          </a>
 
-        {/* Shine Effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-        </div>
-
-        {/* Border Glow */}
-        <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-blue-500/50 blur-sm -z-10 transform scale-105"></div>
-      </motion.div>
+          <div className="mt-6">
+            <p className="text-sm text-gray-600 animate-pulse">
+              Redirecting you to home page in <span className="font-bold text-white">10s</span>... ⏳
+            </p>
+            <p className="mt-2 text-xs text-gray-600">
+              (Tip: Bring your brain + humor, you’ll need both 😜)
+            </p>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };

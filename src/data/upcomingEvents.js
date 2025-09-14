@@ -1,7 +1,7 @@
 const upcomingEvents = [
     {
         title: "🌟 KTS Recruitment Drive 2025",
-        date: "📅 Registrations Open: 7th – 12th September 2025",
+        date: "📅 Registrations Open: 15th – 20th September 2025",
         description: `🚀 Be a Part of Kinesis Technical Society (KTS)!
 
 🎯 Who Can Apply?
