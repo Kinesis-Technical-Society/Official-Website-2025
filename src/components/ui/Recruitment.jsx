@@ -204,7 +204,7 @@ const Recruitment = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="Not your crush’s name, YOURS..."
+                placeholder="Your Name..."
                 required
               />
             </div>
@@ -219,7 +219,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">What’s your avatar?...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="Male" className="text-black">
                   Male
                 </option>
@@ -241,7 +241,7 @@ const Recruitment = () => {
                 value={formData.branch}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="CSE / IT / ECE … or Hogwarts?..."
+                placeholder="CSE / IT / ECE ..."
                 required
               />
             </div>
@@ -257,7 +257,7 @@ const Recruitment = () => {
                 value={formData.roll_no}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="The magical digits KIET gave you..."
+                placeholder="Your University Roll Number..."
                 required
               />
             </div>
@@ -272,7 +272,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">Freshie 1st or 2nd Pro Max...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="1st" className="text-black">
                   1st Year
                 </option>
@@ -293,7 +293,7 @@ const Recruitment = () => {
                 maxLength={10}
                 pattern="[0-9]{10}"
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="Only 10 digits… no country codes please..."
+                placeholder="Only 10 digits Phone Number..."
                 required
               />
             </div>
@@ -322,7 +322,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">Your dream tech zone...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="Web Development" className="text-black">
                   Web Development
                 </option>
@@ -351,7 +351,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">Plan B… just in case...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="Web Development" className="text-black">
                   Web Development
                 </option>
@@ -379,7 +379,7 @@ const Recruitment = () => {
                 value={formData.personal_email}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="Your backup inbox (not mom’s email)..."
+                placeholder="Your backup email..."
                 required
               />
             </div>
@@ -396,7 +396,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">Unleash your inner artist or say None...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="Video Editing" className="text-black">
                   Video Editing
                 </option>
@@ -428,7 +428,7 @@ const Recruitment = () => {
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
                 required
               >
-                <option value="" className="text-gray-500">Hosteller (night owl) / Day Scholar (home food)...</option>
+                <option value="" className="text-gray-500">Choose...</option>
                 <option value="Hosteller" className="text-black">
                   Hosteller
                 </option>
@@ -447,7 +447,7 @@ const Recruitment = () => {
                 value={formData.refer}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="The legend who dragged you here..."
+                placeholder="Refer by (if any)..."
               />
             </div>
 
@@ -461,7 +461,7 @@ const Recruitment = () => {
                 value={formData.why_kts}
                 onChange={handleChange}
                 className="w-full mt-2 px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-white"
-                placeholder="Convince us like Shark Tank..."
+                placeholder="Why KTS? ..."
                 rows="3"
                 required
               ></textarea>
