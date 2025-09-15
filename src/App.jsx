@@ -27,7 +27,7 @@ import upcomingEvents from './data/upcomingEvents';
 import ProjectsPage from './components/ui/Projects';
 const Footer = lazy(() => import("./components/ui/Footer"));
 const HeroParallax = lazy(() =>
-  import("./components/ui/About").then((m) => ({ default: m.HeroParallax }))
+  import("./components/ui/About").then((m) => ({ default: m.Header }))
 );
 const AnimatedTestimonials = lazy(() =>
   import("./components/ui/Animated_Testimonials").then((m) => ({
@@ -130,6 +130,7 @@ const App = () => {
         onClose={() => setShowEventPopup(false)}
         events={upcomingEvents}
       />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<HeroParallax products={products} />} />

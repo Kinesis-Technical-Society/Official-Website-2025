@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../../supabaseClient";
 
 const Recruitment = () => {
-  const scriptURL =
-    "https://script.google.com/macros/s/AKfycbyi_v8CWAEcv3CHz3fW_ROAkw8XEOyPMp30J009n_ZX8tPQFEoSyCwym_pUt_dnYL8pjQ/exec";
-
   const [formData, setFormData] = useState({
     name: "",
+    gender: "",
     branch: "",
     roll_no: "",
     year: "",
@@ -25,11 +24,11 @@ const Recruitment = () => {
 
   const nav = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false); // ✅ new state
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const validateForm = () => {
@@ -46,32 +45,22 @@ const Recruitment = () => {
       personal_email,
       creative_domain,
       hosteller,
-      refer,
       why_kts,
     } = formData;
 
     if (!name.trim()) return Swal.fire("Error", "Name is required", "error");
     if (!gender.trim()) return Swal.fire("Error", "Gender is required", "error");
     if (!branch.trim()) return Swal.fire("Error", "Branch is required", "error");
-    if (!roll_no.trim())
-      return Swal.fire("Error", "University Roll No./User Id is required", "error");
+    if (!roll_no.trim()) return Swal.fire("Error", "University Roll No./User Id is required", "error");
     if (!year.trim()) return Swal.fire("Error", "Year is required", "error");
-    if (!/^[0-9]{10}$/.test(phone_number))
-      return Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
-    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email))
-      return Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
-    if (!domain_pref_1.trim())
-      return Swal.fire("Error", "Please select Domain Preference 1", "error");
-    if (!domain_pref_2.trim())
-      return Swal.fire("Error", "Please select Domain Preference 2", "error");
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(personal_email))
-      return Swal.fire("Error", "Personal Email is required", "error");
-    if (!creative_domain.trim())
-      return Swal.fire("Error", "Please select a Creative Domain option", "error");
-    if (!hosteller.trim())
-      return Swal.fire("Error", "Please select Hosteller/Day Scholar", "error");
-    if (!why_kts.trim())
-      return Swal.fire("Error", "Please tell us why you want to join", "error");
+    if (!/^[0-9]{10}$/.test(phone_number)) return Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
+    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email)) return Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
+    if (!domain_pref_1.trim()) return Swal.fire("Error", "Please select Domain Preference 1", "error");
+    if (!domain_pref_2.trim()) return Swal.fire("Error", "Please select Domain Preference 2", "error");
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(personal_email)) return Swal.fire("Error", "Personal Email is required", "error");
+    if (!creative_domain.trim()) return Swal.fire("Error", "Please select a Creative Domain option", "error");
+    if (!hosteller.trim()) return Swal.fire("Error", "Please select Hosteller/Day Scholar", "error");
+    if (!why_kts.trim()) return Swal.fire("Error", "Please tell us why you want to join", "error");
 
     return true;
   };
@@ -82,18 +71,40 @@ const Recruitment = () => {
 
     setLoading(true);
 
-    const body = new FormData();
-    Object.entries(formData).forEach(([key, value]) =>
-      body.append(key, value.toString())
-    );
+    // normalize emails
+    const payload = {
+      ...formData,
+      kiet_email: (formData.kiet_email || "").toLowerCase().trim(),
+      personal_email: (formData.personal_email || "").toLowerCase().trim(),
+      phone_number: (formData.phone_number || "").toString().trim(),
+    };
 
     try {
-      const response = await fetch(scriptURL, { method: "POST", body });
-      const result = await response.text();
+      const { data, error } = await supabase
+        .from("registrations")
+        .insert([payload]);
 
-      if (result.includes("success")) {
-        setSubmitted(true); // ✅ show success box
+      if (error) {
+        // Robust duplicate detection:
+        const msg = (error.message || "").toLowerCase();
+        const details = (error.details || "").toLowerCase();
+        const isDuplicate =
+          error.code === "23505" ||
+          msg.includes("duplicate") ||
+          details.includes("kiet_email") ||
+          details.includes("already exists");
+
+        if (isDuplicate) {
+          Swal.fire("Error", "This KIET email is already registered!", "error");
+        } else {
+          console.error("Supabase insert error:", error);
+          Swal.fire("Error", error.message || "Insert failed", "error");
+        }
+      } else {
+        // success
+        setSubmitted(true);
         Swal.fire("Success 🎉", "Form submitted successfully!", "success");
+        // clear form
         setFormData({
           name: "",
           gender: "",
@@ -111,16 +122,11 @@ const Recruitment = () => {
           why_kts: "",
         });
 
-        // ✅ Navigate after 10s
-        setTimeout(() => {
-          nav("/");
-        }, 10000);
-      } else if (result.includes("duplicate")) {
-        Swal.fire("Error", "This KIET email is already registered!", "error");
-      } else {
-        Swal.fire("Oops!", result, "error");
+        // Navigate after 10s (user sees WhatsApp box)
+        setTimeout(() => nav("/"), 10000);
       }
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       Swal.fire("Error", "Something went wrong. Try again!", "error");
     } finally {
       setLoading(false);

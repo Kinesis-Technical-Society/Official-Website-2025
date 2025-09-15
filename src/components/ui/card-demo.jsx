@@ -16,7 +16,7 @@ function CardDemo({
                 className={cn(
                     "cursor-pointer overflow-hidden relative card h-56 rounded-4xl shadow-xl max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4"
                 )}
-                style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center", loading: "eager" }}
             >
                 {/* Background Overlay */}
                 <div className="absolute w-full h-full top-0 left-0 bg-black opacity-0 group-hover/card:opacity-60 transition-opacity duration-300"></div>
