@@ -48,20 +48,58 @@ const Recruitment = () => {
       why_kts,
     } = formData;
 
-    if (!name.trim()) return Swal.fire("Error", "Name is required", "error");
-    if (!gender.trim()) return Swal.fire("Error", "Gender is required", "error");
-    if (!branch.trim()) return Swal.fire("Error", "Branch is required", "error");
-    if (!roll_no.trim()) return Swal.fire("Error", "University Roll No./User Id is required", "error");
-    if (!year.trim()) return Swal.fire("Error", "Year is required", "error");
-    if (!/^[0-9]{10}$/.test(phone_number)) return Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
-    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email)) return Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
-    if (!domain_pref_1.trim()) return Swal.fire("Error", "Please select Domain Preference 1", "error");
-    if (!domain_pref_2.trim()) return Swal.fire("Error", "Please select Domain Preference 2", "error");
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(personal_email)) return Swal.fire("Error", "Personal Email is required", "error");
-    if (!creative_domain.trim()) return Swal.fire("Error", "Please select a Creative Domain option", "error");
-    if (!hosteller.trim()) return Swal.fire("Error", "Please select Hosteller/Day Scholar", "error");
-    if (!why_kts.trim()) return Swal.fire("Error", "Please tell us why you want to join", "error");
-
+    if (!name.trim()) {
+      Swal.fire("Error", "Name is required", "error");
+      return false;
+    }
+    if (!gender.trim()) {
+      Swal.fire("Error", "Gender is required", "error");
+      return false;
+    }
+    if (!branch.trim()) {
+      Swal.fire("Error", "Branch is required", "error");
+      return false;
+    }
+    if (!roll_no.trim()) {
+      Swal.fire("Error", "University Roll No./User Id is required", "error");
+      return false;
+    }
+    if (!year.trim()) {
+      Swal.fire("Error", "Year is required", "error");
+      return false;
+    }
+    if (!/^[0-9]{10}$/.test(phone_number)) {
+      Swal.fire("Error", "Enter a valid 10-digit phone number", "error");
+      return false;
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@kiet\.edu$/.test(kiet_email)) {
+      Swal.fire("Error", "Enter a valid KIET email (example@kiet.edu)", "error");
+      return false;
+    }
+    if (!domain_pref_1.trim()) {
+      Swal.fire("Error", "Please select Domain Preference 1", "error");
+      return false;
+    }
+    if (!domain_pref_2.trim()) {
+      Swal.fire("Error", "Please select Domain Preference 2", "error");
+      return false;
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(personal_email)) {
+      Swal.fire("Error", "Enter a valid Personal Email", "error");
+      return false;
+    }
+    if (!creative_domain.trim()) {
+      Swal.fire("Error", "Please select a Creative Domain option", "error");
+      return false;
+    }
+    if (!hosteller.trim()) {
+      Swal.fire("Error", "Please select Hosteller/Day Scholar", "error");
+      return false;
+    }
+    if (!why_kts.trim()) {
+      Swal.fire("Error", "Please tell us why you want to join", "error");
+      return false;
+    }
     return true;
   };
 
@@ -122,8 +160,8 @@ const Recruitment = () => {
           why_kts: "",
         });
 
-        // Navigate after 10s (user sees WhatsApp box)
-        setTimeout(() => nav("/"), 10000);
+        // Navigate after 30s (user sees WhatsApp box)
+        setTimeout(() => nav("/"), 30000);
       }
     } catch (err) {
       console.error(err);
@@ -485,7 +523,7 @@ const Recruitment = () => {
 
           <div className="mt-6">
             <p className="text-sm text-gray-600 animate-pulse">
-              Redirecting you to home page in <span className="font-bold text-white">10s</span>... ⏳
+              Redirecting you to home page in <span className="font-bold text-white">30s</span>... ⏳
             </p>
             <p className="mt-2 text-xs text-gray-600">
               (Tip: Bring your brain + humor, you’ll need both 😜)

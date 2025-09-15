@@ -106,7 +106,7 @@ const App = () => {
 
   const knownRoutes = ['/about', '/blogs', '/projects', '/team', '/events', '/domains', '/register'];
   const is404 = !knownRoutes.includes(location.pathname) && location.pathname !== '/';
-  const is404Footer = !knownRoutes.includes(location.pathname) && location.pathname === '/';
+  const is404Footer = !knownRoutes.includes(location.pathname) && location.pathname !== '/';
 
   return (
     <div className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full' id='home'>
