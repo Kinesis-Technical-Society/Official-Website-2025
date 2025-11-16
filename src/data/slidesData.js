@@ -1,6 +1,38 @@
 export const slideData = [
   {
     id: 1,
+    title: "🚀 DataVerse 2025 – National Level Hackathon",
+    button: "Explore Event",
+    src: "/dataverse.JPG",
+    Description: `
+    <p>
+      <strong>DataVerse</strong> is a flagship national-level hackathon organized at 
+      <strong>KIET Group of Institutions</strong>, bringing together innovators, developers, and tech enthusiasts from across the country.
+    </p>
+    <br/>
+    <p>
+      The event received an overwhelming response with <strong>1100+ registrations on Unstop</strong>,
+      with multiple teams joining from institutes across India. DataVerse also hosted engaging 
+      <strong>speaker sessions</strong> featuring industry experts and popular <strong>YouTubers</strong>.
+    </p>
+    <br/>
+    <p><strong>💡 Event Highlights:</strong>
+      <ul>
+        <li>24-hour Innovation Hackathon</li>
+        <li>Tech Tracks: AI, ML and Data Science</li>
+        <li>National participation from multiple states</li>
+        <li>Expert-led Speaker Sessions</li>
+        <li>Opportunities for internship, networking & prizes</li>
+      </ul>
+    </p>
+    <br/>
+    <p>
+      DataVerse aims to foster a culture of innovation, problem-solving, and collaboration by challenging students to build impactful tech solutions.
+    </p>
+  `
+  },
+  {
+    id: 2,
     title: "🧠 CodeCore – NLP Bootcamp by KTS",
     button: "Explore Event",
     src: "/codecore.webp",
@@ -25,7 +57,7 @@ export const slideData = [
     `
   },
   {
-    id: 2,
+    id: 3,
     title: "⚔️ Kode Kombat – Annual Coding Competition by KTS",
     button: "Explore Event",
     src: "/kodekombat.webp",
@@ -49,7 +81,7 @@ export const slideData = [
     `
   },
   {
-    id: 3,
+    id: 4,
     title: "🚀 NASA Space Apps Challenge 2024 – Ghaziabad",
     button: "Explore Event",
     src: "/nasaspace.webp",
@@ -74,7 +106,7 @@ export const slideData = [
     `
   },
   {
-    id: 4,
+    id: 5,
     title: "💻 Pixel to Code – Build Your Portfolio from Scratch",
     button: "Explore Event",
     src: "/pixeltocode.webp",
