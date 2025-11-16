@@ -136,9 +136,9 @@ const App = () => {
         <Route path="/about" element={<HeroParallax products={products} />} />
         <Route path="/team" element={<AnimatedTestimonials testimonials={testimonials} />} />
         <Route path="/events" element={<CarouselDemo />} />
-        <Route path="/blogs" element={<Suspense fallback={<Loader />}>
+        {/* <Route path="/blogs" element={<Suspense fallback={<Loader />}>
           <AppleCardsCarouselDemo />
-        </Suspense>} />
+        </Suspense>} /> */}
         <Route path="/projects" element={<Suspense fallback={<Loader />}>
           <ProjectsPage />
         </Suspense>} />

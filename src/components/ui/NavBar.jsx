@@ -28,7 +28,7 @@ const NavBar = () => {
             { name: "About", link: "/about" },
             { name: "Team", link: "/team" },
             { name: "Events", link: "/events" },
-            { name: "Blogs", link: "/blogs" },
+            { name: "Projects", link: "/projects" },
         ],
         []
     );

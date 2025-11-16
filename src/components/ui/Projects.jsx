@@ -1,17 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import projects from "../../data/projects";
 import { motion } from "framer-motion";
 
 const ProjectCard = ({ project }) => (
     <div className="group relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-6 w-full transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/25 hover:scale-105 hover:bg-white/20 hover:border-white/30 hover:-translate-y-2 cursor-pointer overflow-hidden">
-        {/* Animated background gradient on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400/10 via-pink-400/10 to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out rounded-xl"></div>
 
-        {/* Floating particles */}
         <div className="absolute -top-1 -right-1 w-20 h-20 bg-gradient-to-br from-pink-400/20 to-purple-400/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out group-hover:animate-pulse"></div>
         <div className="absolute -bottom-1 -left-1 w-16 h-16 bg-gradient-to-tr from-blue-400/20 to-cyan-400/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out delay-100 group-hover:animate-pulse"></div>
 
-        {/* Content */}
         <div className="relative z-10">
             <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-200 group-hover:via-blue-300 group-hover:to-purple-300 transition-all duration-300 ease-in-out transform group-hover:scale-105 group-hover:drop-shadow-lg">
                 {project.title}
@@ -44,6 +41,7 @@ const ProjectCard = ({ project }) => (
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                     </a>
                 )}
+
                 {project.githubLink && (
                     <a
                         href={project.githubLink}
@@ -58,27 +56,32 @@ const ProjectCard = ({ project }) => (
             </div>
         </div>
 
-        {/* Shine Effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
         </div>
 
-        {/* Border Glow */}
         <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-blue-500/50 blur-sm -z-10 transform scale-105"></div>
     </div>
 );
 
 const ProjectsPage = () => {
+    const [selectedDomain, setSelectedDomain] = useState("All");
+
+    const filteredProjects =
+        selectedDomain === "All"
+            ? projects
+            : projects.filter((p) => p.domain === selectedDomain);
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
     return (
-        <section className="min-h-screen bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white pt-36 pb-20 px-5 md:px-10">
-            <div className="max-w-7xl mx-auto">
+        <section className="min-h-screen bg-gradient-to-b from-[#0b0434] via-[#4a4b8a] to-white pt-36 pb-20 px-5 md:px-10 text-center">
+            <div className="max-w-7xl mx-auto text-center">
                 <div className="w-9/12 mx-auto text-center">
                     <motion.div
-                        className="text-center mb-12 z-10"
+                        className="text-center mb-6 z-10"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
@@ -89,13 +92,35 @@ const ProjectsPage = () => {
                             </span>
                         </h2>
                     </motion.div>
+
+                    {/* 🔥 FILTER DROPDOWN */}
+                    <div className="flex justify-center mb-12">
+                        <select
+                            className="bg-white/20 text-white px-6 py-3 rounded-xl border border-white/30 backdrop-blur-md cursor-pointer hover:border-white/50 transition-all"
+                            value={selectedDomain}
+                            onChange={(e) => setSelectedDomain(e.target.value)}
+                        >
+                            <option value="All" className="text-black">All Domains</option>
+                            <option value="Web Development" className="text-black">Web Development</option>
+                            <option value="Android Development" className="text-black">Android Development</option>
+                            <option value="Machine Learning" className="text-black">Machine Learning</option>
+                            <option value="UI/UX" className="text-black">UI/UX</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
-                        <ProjectCard key={index} project={project} />
-                    ))}
-                </div>
+                {/* PROJECTS GRID */}
+                {filteredProjects.length > 0 ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredProjects.map((project, index) => (
+                            <ProjectCard key={index} project={project} />
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center w-1/2 mx-auto text-white text-xl mt-16 opacity-80 font-semibold">
+                        🚧 No projects available in this domain right now. Our team is actively building and will update this section soon with exciting new projects.
+                    </p>
+                )}
             </div>
         </section>
     );
