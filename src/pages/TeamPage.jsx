@@ -2,11 +2,11 @@
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import CardDemo from "./card-demo";
+import CardDemo from "../components/ui/CardDemo";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaSquareBehance } from "react-icons/fa6";
-import { FocusCards } from "@/AccertinityUI/focus-cards";
-import cards from "../../data/founder";
+import { FocusCards } from "@/components/external/AccertinityUI/focus-cards";
+import cards from "../data/founder";
 
 export const AnimatedTestimonials = ({
     testimonials,

@@ -1,12 +1,11 @@
 import React, { lazy } from "react";
 
-import GridDistortionPure from "../../ReactBits/GridDistortion";
+import GridDistortionPure from "../components/external/ReactBits/GridDistortion";
 import bg from "/image.webp";
-import { Modal } from "@/AccertinityUI/animated-modal";
-import WinnerPopup from "./WinnerPopUp";
+import { Modal } from "@/components/external/AccertinityUI/animated-modal";
+import WinnerPopup from "../components/features/WinnerPopUp";
 
-const ThreeDCardDemo = lazy(() => import("../../AccertinityUI/HeroRight"));
-const NavBar = lazy(() => import("./NavBar"));
+const ThreeDCardDemo = lazy(() => import("../components/external/AccertinityUI/HeroRight"));
 
 const KinesisHeroSection = () => {
     return (
@@ -20,7 +19,6 @@ const KinesisHeroSection = () => {
                 relaxation={0.9}
                 className="custom-class lg:h-screen text-black w-full h-full relative z-30"
             >
-                <NavBar />
 
                 <div className="lg:h-screen h-auto w-11/12 sm:w-9/12 lg:pt-30 px-6 flex flex-col lg:flex-row items-center justify-between relative lg:pb-10 mx-auto pt-40 lg:gap-8 gap-1">
                     {/* Left Side */}
@@ -55,7 +53,9 @@ const KinesisHeroSection = () => {
                     </div>
 
                     {/* Right Side (3D Card) */}
-                    <ThreeDCardDemo />
+                    <React.Suspense fallback={<div className="h-64 w-64 flex items-center justify-center text-white">Loading...</div>}>
+                        <ThreeDCardDemo />
+                    </React.Suspense>
                 </div>
             </GridDistortionPure>
         </>

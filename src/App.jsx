@@ -1,48 +1,43 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowAltCircleUp } from 'react-icons/fa';
 import { Routes, Route, useLocation } from 'react-router-dom'; // ✅ include useLocation
 
-import Loader from './components/ui/Loader';
-import CustomCursor from './components/ui/CustomCursor';
+import Loader from './components/common/Loader';
+import CustomCursor from './components/common/CustomCursor';
 import { BackgroundBeamsWithCollision } from './components/ui/BgBeamsWithCollision';
-import KinesisHeroSection from './components/ui/Home';
-// import { HeroParallax } from './components/ui/About';
-// import CarouselDemo from './components/ui/Events';
-// import Footer from './components/ui/Footer';
-// import { AnimatedTestimonials } from './components/ui/Animated_Testimonials';
-// import { HoverEffect } from './components/ui/OurDomains';
-import NabBar from './components/ui/NavBar';
-// import { AppleCardsCarouselDemo } from './components/ui/AppleCardsCarouselDemo';
-import NotFound from './components/ui/NotFound';
+import KinesisHeroSection from './pages/HomePage';
+import NavBar from './components/common/NavBar';
+import NotFound from './pages/NotFoundPage';
 
 import { products } from './data/products';
 import testimonials from './data/testimonials';
 import domains from './data/domains';
-import Recruitment from './components/ui/Recruitment.jsx';
+import Recruitment from './pages/RecruitmentPage';
 
 import './App.css';
-import EventPopup from './components/ui/EventPopup';
+import EventPopup from './components/features/EventPopup';
 import upcomingEvents from './data/upcomingEvents';
-import ProjectsPage from './components/ui/Projects';
-const Footer = lazy(() => import("./components/ui/Footer"));
+import ProjectsPage from './pages/ProjectsPage';
+
+const Footer = lazy(() => import("./components/common/Footer"));
 const HeroParallax = lazy(() =>
-  import("./components/ui/About").then((m) => ({ default: m.Header }))
+  import("./pages/AboutPage").then((m) => ({ default: m.Header }))
 );
 const AnimatedTestimonials = lazy(() =>
-  import("./components/ui/Animated_Testimonials").then((m) => ({
+  import("./pages/TeamPage").then((m) => ({
     default: m.AnimatedTestimonials,
   }))
 );
 const HoverEffect = lazy(() =>
-  import("./components/ui/OurDomains").then((m) => ({ default: m.HoverEffect }))
+  import("./pages/DomainsPage").then((m) => ({ default: m.HoverEffect }))
 );
 const AppleCardsCarouselDemo = lazy(() =>
-  import("./components/ui/AppleCardsCarouselDemo").then((m) => ({
+  import("./components/ui/AppleCardsCarousel").then((m) => ({
     default: m.AppleCardsCarouselDemo,
   }))
 );
-const CarouselDemo = lazy(() => import("./components/ui/Events"));
+const CarouselDemo = lazy(() => import("./pages/EventsPage"));
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +52,8 @@ const App = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    // Reduced delay for better perceived performance
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -102,60 +98,80 @@ const App = () => {
   // );
   // const Projects = () => <ProjectsPage />;
 
-  if (loading) return <Loader />;
-
   const knownRoutes = ['/about', '/blogs', '/projects', '/team', '/events', '/domains', '/register'];
   const is404 = !knownRoutes.includes(location.pathname) && location.pathname !== '/';
   const is404Footer = !knownRoutes.includes(location.pathname) && location.pathname !== '/';
 
   return (
-    <div className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full' id='home'>
-      {!is404 && (
-        <>
+    <div className="relative w-full min-h-screen">
+      <AnimatePresence mode="wait">
+        {loading ? (
           <motion.div
-            {...scrollBtnAnimation}
-            className='fixed bottom-8 right-8 z-[9999] cursor-pointer'
-            onClick={scrollToTop}
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <FaArrowAltCircleUp className='text-[#171040] bg-white rounded-full text-6xl' />
+            <Loader />
           </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className='cursor-none bg-gradient-to-b from-white via-[#fff8fc] to-[#fef6f9] w-full'
+            id='home'
+          >
+            {!is404 && (
+              <>
+                <motion.div
+                  {...scrollBtnAnimation}
+                  className='fixed bottom-8 right-8 z-[9999] cursor-pointer'
+                  onClick={scrollToTop}
+                >
+                  <FaArrowAltCircleUp className='text-[#171040] bg-white rounded-full text-6xl' />
+                </motion.div>
 
-          <CustomCursor />
-          <NabBar />
-        </>
-      )}
+                <CustomCursor />
+                <NavBar />
+              </>
+            )}
 
-      {/* <EventPopup
-        isVisible={showEventPopup}
-        onClose={() => setShowEventPopup(false)}
-        events={upcomingEvents}
-      /> */}
+            {/* <EventPopup
+            isVisible={showEventPopup}
+            onClose={() => setShowEventPopup(false)}
+            events={upcomingEvents}
+          /> */}
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<HeroParallax products={products} />} />
-        <Route path="/team" element={<AnimatedTestimonials testimonials={testimonials} />} />
-        <Route path="/events" element={<CarouselDemo />} />
-        {/* <Route path="/blogs" element={<Suspense fallback={<Loader />}>
-          <AppleCardsCarouselDemo />
-        </Suspense>} /> */}
-        <Route path="/projects" element={<Suspense fallback={<Loader />}>
-          <ProjectsPage />
-        </Suspense>} />
-        <Route path="/domains" element={<Suspense fallback={<Loader />}>
-          <HoverEffect cards={domains} />
-        </Suspense>} />
-        <Route path="/register" element={<Suspense fallback={<Loader />}>
-          <Recruitment />
-        </Suspense>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<HeroParallax products={products} />} />
+              <Route path="/team" element={<AnimatedTestimonials testimonials={testimonials} />} />
+              <Route path="/events" element={<CarouselDemo />} />
+              {/* <Route path="/blogs" element={<Suspense fallback={<Loader />}>
+              <AppleCardsCarouselDemo />
+            </Suspense>} /> */}
+              <Route path="/projects" element={<Suspense fallback={<Loader />}>
+                <ProjectsPage />
+              </Suspense>} />
+              <Route path="/domains" element={<Suspense fallback={<Loader />}>
+                <HoverEffect cards={domains} />
+              </Suspense>} />
+              <Route path="/register" element={<Suspense fallback={<Loader />}>
+                <Recruitment />
+              </Suspense>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
 
-      {!is404Footer && (
-        <Suspense fallback={<Loader />}>
-          <Footer />
-        </Suspense>
-      )}
+            {!is404Footer && (
+              <Suspense fallback={<Loader />}>
+                <Footer />
+              </Suspense>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

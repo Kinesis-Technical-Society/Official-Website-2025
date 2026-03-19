@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
-import { useOutsideClick } from "@/custom_hooks/use-outside-click";
+import { useOutsideClick } from "@/hooks/use-outside-click";
 export const HoverEffect = ({ cards }) => {
     let [hoveredIndex, setHoveredIndex] = useState(null);
     const [active, setActive] = useState(null);

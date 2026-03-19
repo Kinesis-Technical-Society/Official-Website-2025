@@ -9,9 +9,9 @@ import {
     MobileNavToggle,
     NavbarKietLogo,
     NavbarKtsLogo,
-} from "../../AccertinityUI/ResizableNavbar";
+} from "../external/AccertinityUI/ResizableNavbar";
 import { MessageSquare } from "lucide-react";
-import { Modal } from "@/AccertinityUI/animated-modal";
+import { Modal } from "@/components/external/AccertinityUI/animated-modal";
 import Contact from "./Contact";
 import { useLocation, useNavigate } from "react-router-dom";
 

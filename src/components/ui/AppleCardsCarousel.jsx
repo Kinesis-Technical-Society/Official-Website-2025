@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Carousel, Card } from "@/AccertinityUI/apple-cards-carousel";
+import { Carousel, Card } from "@/components/external/AccertinityUI/apple-cards-carousel";
 import { motion } from "framer-motion";
 
 export function AppleCardsCarouselDemo() {

@@ -2,7 +2,7 @@
 
 import React, { memo } from "react";
 import { motion } from "framer-motion";
-import { CardBody, CardContainer } from "@/AccertinityUI/3d-card";
+import { CardBody, CardContainer } from "./3d-card";
 import blobImage from "/blob.webp";
 import treeImage from "/tree.webp";
 

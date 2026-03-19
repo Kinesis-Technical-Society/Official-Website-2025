@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import projects from "../../data/projects";
+import projects from "../data/projects";
 import { motion } from "framer-motion";
 
 const ProjectCard = ({ project }) => (

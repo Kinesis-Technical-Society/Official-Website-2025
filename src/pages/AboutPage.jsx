@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { InfiniteMovingCards } from "./infinite-moving-cards";
-import { products } from "../../data/products";
+import { InfiniteMovingCards } from "../components/ui/InfiniteMovingCards";
+import { products } from "../data/products";
 
 // export const HeroParallax = ({ products }) => {
 //     const ref = useRef(null);
@@ -94,7 +94,7 @@ export const Header = React.memo(() => (
                 </h2>
             </motion.div>
         </div>
-        <p className="text-base md:text-xl text-white w-9/12 mx-auto text-center">
+        <div className="text-base md:text-xl text-white w-9/12 mx-auto text-center">
             <strong>Kinesis Technical Society (KTS)</strong> is the official technical society of KIET Group of Institutions, built on the pillars of innovation, collaboration, and continuous learning. KTS provides a dynamic platform for students to explore and excel in various domains of technology.
             <br />
             <br />
@@ -114,7 +114,7 @@ export const Header = React.memo(() => (
                 Our society organizes a wide range of activities including technical workshops, hackathons, coding competitions, and project showcases that encourage hands-on learning and creative problem-solving.
             </p>
             <p className="text-base md:text-xl mt-8 text-gray-200">KTS is more than just a club — it's a community of driven individuals who are passionate about technology, eager to innovate, and always ready to learn.</p>
-        </p>
+        </div>
         <div className="h-[20rem] rounded-md flex flex-col antialiased dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
             <InfiniteMovingCards
                 items={products}

@@ -5,7 +5,7 @@ import kietLogo from "/kietLogo.webp";
 import ktsLogo from "/ktsLogo1.webp";
 import people from "../../data/people";
 import Contact from "./Contact";
-import { Modal } from "@/AccertinityUI/animated-modal";
+import { Modal } from "@/components/external/AccertinityUI/animated-modal";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SimpleTooltip = ({ items }) => {

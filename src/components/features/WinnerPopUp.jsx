@@ -115,7 +115,7 @@ export default function WinnerPopup() {
               This ensures both move simultaneously and no blank gap appears.
           */}
                     <div
-                        key={winners[index].id}
+                        key={`current-${winners[index].id}`}
                         style={{
                             ...styles.card,
                             transform: sliding ? "translateX(-100%)" : "translateX(0%)",
@@ -137,7 +137,7 @@ export default function WinnerPopup() {
                     </div>
 
                     <div
-                        key={winners[nextIndex].id}
+                        key={`next-${winners[nextIndex].id}`}
                         style={{
                             ...styles.card,
                             transform: sliding ? "translateX(0%)" : "translateX(100%)",

@@ -29,7 +29,7 @@ const Loader = () => {
       {/* Loader Card */}
       <motion.div
         {...containerVariants}
-        className="z-10 flex flex-col items-center rounded-2xl px-10 py-8 text-center"
+        className="relative z-10 flex flex-col items-center rounded-2xl px-10 py-8 text-center"
       >
         <ClipLoader size={60} color="#ffffff" aria-label="Loading Spinner" />
 

@@ -106,18 +106,6 @@ const Slide = ({ slide, index, current, handleSlideClick }) => {
                   Close
                 </button>
               </div>
-              <style jsx>{`
-      .thin-scrollbar::-webkit-scrollbar {
-        width: 4px;
-      }
-      .thin-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .thin-scrollbar::-webkit-scrollbar-thumb {
-        background-color: rgba(255, 255, 255, 0.4);
-        border-radius: 4px;
-      }
-    `}</style>
             </>
           )}
         </div>
